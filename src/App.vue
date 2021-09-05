@@ -1,4 +1,4 @@
-d<template>
+<template>
   <div id="app">
     <div class="menuPane">
       <Menu
@@ -78,5 +78,15 @@ export default {
   margin: 20px 10px;
   border-bottom: 2px solid #60789e;
 }
-
+.button {
+  color: black;
+  border-radius: 8px;
+  padding: 5px;
+  border: 1px solid #60789e;
+}
+.button:hover {
+    color: white;
+    background-color: #60789e;
+    cursor: pointer;
+}
 </style>
