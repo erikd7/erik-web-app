@@ -4,7 +4,9 @@
             Cribbage Points Counter
         </div>
         <div>
-            <button @click="calculatePoints()">
+            <button
+                class="button"
+                @click="calculatePoints()">
                 Total Points
             </button>
         </div>

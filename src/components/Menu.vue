@@ -5,6 +5,9 @@
                 v-for="section in sections"
                 :key="section.key"
                 class="menu-item"
+                :class="{
+                    'menu-item-selected': section.key === current
+                }"
                 @click="setSection(section.key)"
             >
                 {{ section.name }}
@@ -50,6 +53,11 @@ export default {
 }
 .menu-item:hover {
     color: white;
+    background-color: #60789e;
+    cursor: pointer;
+}
+.menu-item-selected {
+    color: white !important;
     background-color: #60789e;
     cursor: pointer;
 }
