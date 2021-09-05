@@ -70,19 +70,10 @@
                 let starterCard = 'x';
                 console.log('cardsmap is', cardsMap);
                 //Loop through facecards and check for next in sequence
-                Object.keys(cardsMap).forEach(face => {
-                    console.log('face is', face);
-                    const nextCard =
-                        helpers.orderedFaces[
-                            helpers.orderedFaces.indexOf(face) + 1
-                        ];
+                helpers.orderedFaces.forEach(face => {
+                    const cardInHand = cardsMap[face];
 
-                    //if we have the next cardsMap
-                    const nextCardIn = cardsMap[nextCard]?.length;
-                    console.log('next card in', nextCardIn);
-                    console.log('starterCard', starterCard);
-
-                    if (nextCardIn) {
+                    if (cardInHand) {
                         if (starterCard === 'x') {
                             //If it's first in a sequence
                             starterCard = face;
@@ -92,12 +83,14 @@
                             runs[starterCard].push(face);
                         }
                     } else {
+                        //
                         starterCard = 'x';
                     }
-
-                    console.log('runs is', runs);
                 });
                 console.log('runs is', runs);
+
+                this.totalPoints += 2 * numCombos;
+                this.cardsResult.pairs = pairCards;
             },
             /*getSumPoints(cards, target, cardsMap) {
         console.log('cards map is ', cardsMap, target   )
