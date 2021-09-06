@@ -10,7 +10,7 @@
                 }"
                 @click="setSection(section.key)"
             >
-                {{ section.name }}
+                <p>{{ section.name }}</p>
             </div>
         </div>
     </div>

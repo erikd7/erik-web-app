@@ -16,7 +16,3 @@ array2.forEach((el, index) => {
         result.push(`${found} + ${index}`)
     }
 });
-
-console.log('result is', result)
-
-console.log('done2');

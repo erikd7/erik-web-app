@@ -2,7 +2,7 @@
  * @description      :
  * @author           : ebdie
  * @group            :
- * @created          : 06/09/2021 - 13:11:23
+ * @created          : 06/09/2021 - 13:15:38
  *
  * MODIFICATION LOG
  * - Version         : 1.0.0
@@ -10,12 +10,11 @@
  * - Author          : ebdie
  * - Modification    :
  **/
-import Vue from "vue";
-import App from "./App.vue";
-import "./index.css";
+// ./postcss.config.js
 
-Vue.config.productionTip = false;
-
-new Vue({
-  render: (h) => h(App),
-}).$mount("#app");
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};

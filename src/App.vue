@@ -57,7 +57,6 @@ export default {
   methods: {
     setSection(section) {
       this.current = section;
-      console.log(section)
     },
   },
 }
