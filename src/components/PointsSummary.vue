@@ -45,6 +45,10 @@ export default {
     color: black;
     border-radius: 3px;
     padding: 5px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }
 .menu-item:hover {
     color: white;
