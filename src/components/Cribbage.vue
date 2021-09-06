@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="header">
+    <div class="flex">
       Cribbage Points Counter
     </div>
     <div>
