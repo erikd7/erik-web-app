@@ -1,5 +1,8 @@
 <template>
     <div class="card">
+        <div v-if="header" class="card-header">
+            {{ header }}
+        </div>
         <slot></slot>
     </div>
 </template>
@@ -10,21 +13,9 @@
             return {};
         },
         props: {
-            cards: {
-                type: Array,
-                default: () => [],
-            },
-            cardLabel: {
+            header: {
                 type: String,
                 default: '',
-            },
-            cardTitle: {
-                type: String,
-                default: '',
-            },
-            points: {
-                type: Number,
-                default: 0,
             },
         },
     };
@@ -45,5 +36,9 @@
     }
     .card-title > div {
         padding: 0px 5px;
+    }
+    .card-header {
+        border-bottom: 1px solid grey;
+        font-size: larger;
     }
 </style>
