@@ -99,4 +99,10 @@ export default {
   background-color: #425677;
   cursor: pointer;
 }
+.link {
+  color: blue;
+}
+.link:hover {
+  text-decoration: underline;
+}
 </style>
