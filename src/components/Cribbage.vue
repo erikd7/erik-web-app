@@ -57,11 +57,11 @@ export default {
   methods: {
     calculatePoints() {
       this.cardsResult = CardResult.build();
-      //this.getSumPoints(this.cardValues, this.total)
       //const cardsValueMap = this.createCardHash(this.cardValues)
       const cardsFaceMap = helpers.createCardHash(this.cardFaces);
-      this.getPairPoints(cardsFaceMap);
-      this.getRunPoints(cardsFaceMap);
+      this.getSumPoints(this.cardValues, this.total);
+      //this.getPairPoints(cardsFaceMap);
+      //this.getRunPoints(cardsFaceMap);
       this.totalPoints = 10;
       console.log("end", this.cardsResult);
     },
