@@ -1,0 +1,44 @@
+<template>
+    <div class="card">
+        <div v-if="header" class="card-header">
+            {{ header }}
+        </div>
+        <slot></slot>
+    </div>
+</template>
+
+<script>
+    export default {
+        data() {
+            return {};
+        },
+        props: {
+            header: {
+                type: String,
+                default: '',
+            },
+        },
+    };
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style>
+    .card {
+        padding: 5px;
+        margin: 5px;
+        border-radius: 10px;
+        background-color: #c3cfe9;
+        text-align: center;
+    }
+    .card-title {
+        font-weight: bold;
+        border-bottom: 1px solid #425677;
+    }
+    .card-title > div {
+        padding: 0px 5px;
+    }
+    .card-header {
+        border-bottom: 1px solid grey;
+        font-size: larger;
+    }
+</style>

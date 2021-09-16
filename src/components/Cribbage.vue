@@ -1,30 +1,44 @@
 <template>
-  <div>
-    <div class="flex">
-      Cribbage Points Counter
-    </div>
-    <div>
+  <div class="flex flex-col">
+    <div class="p-b-10">
+      enter points placeholder
       <button class="button" @click="calculatePoints()">
-        Total Points
+        Count Points
       </button>
     </div>
     <div v-if="totalPoints">Total Points is {{ totalPoints }}</div>
-    <div>
-      Points Breakdown:
-    </div>
-    <div v-if="cardsResult.pairs">
-      Points from Pairs:
-      <PointsSummary label="Pair" :cards="cardsResult.pairs.cards" />
+    <div
+      v-if="totalPoints"
+      class="flex flex-row justify-items-center justify-evenly flex-wrap"
+    >
+      <Card
+        cardTitle="Sums"
+        cardLabel="Sum"
+        :cards="cardsResult.sums.cards"
+        :points="cardsResult.sums.points"
+      />
+      <Card
+        cardTitle="Pairs"
+        cardLabel="Pair"
+        :cards="cardsResult.pairs.cards"
+        :points="cardsResult.pairs.points"
+      />
+      <Card
+        cardTitle="Runs"
+        cardLabel="Run"
+        :cards="cardsResult.runs.cards"
+        :points="cardsResult.runs.points"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import PointsSummary from "./PointsSummary.vue";
+import Card from "../SharedComponents/Card.vue";
 import { helpers, CardResult } from "../util/pointsCounterHelpers";
 
 export default {
-  components: { PointsSummary },
+  components: { Card },
   props: {
     resume: {
       type: Object,
@@ -42,11 +56,14 @@ export default {
   },
   methods: {
     calculatePoints() {
+      this.cardsResult = CardResult.build();
       //this.getSumPoints(this.cardValues, this.total)
       //const cardsValueMap = this.createCardHash(this.cardValues)
       const cardsFaceMap = helpers.createCardHash(this.cardFaces);
-      //this.getPairPoints(cardsFaceMap);
+      this.getPairPoints(cardsFaceMap);
       this.getRunPoints(cardsFaceMap);
+      this.totalPoints = 10;
+      console.log("end", this.cardsResult);
     },
     getPairPoints(cardsMap) {
       let numCombos = 0;
