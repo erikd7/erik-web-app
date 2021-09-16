@@ -75,6 +75,21 @@ const factorial = (number) => {
   return total;
 };
 
+const getSumPoints = (cards, cardsMap, target) => {
+  let listOfSums = {}
+  console.log('cardsMap is', cardsMap)
+  for (const value of cards) {
+    if(!listOfSums[value]) {
+      listOfSums[value] = []
+    }
+    
+  }
+}
+
+const checkSum = (numbers, target, current, index) => {
+
+}
+
 export const helpers = {
   orderedFaces,
   isLastCard,
@@ -82,6 +97,7 @@ export const helpers = {
   createCardHash,
   getNumCombos,
   factorial,
+  getSumPoints,
 };
 export class CardResult {
   constructor(pairs, runs, sums) {
