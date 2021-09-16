@@ -1,9 +1,10 @@
 <template>
   <div>
-    <div v-for="(set, index) in cards" :key="index">
-      <div v-for="cardFace in set" :key="cardFace" class="">
-        {{ `${label} ${index + 1}:` }} {{ cardFace }} x {{ set[cardFace] }}
-      </div>
+    <div v-for="(set, index) in cards" :key="`${card}@${index}`">
+      {{ `${label} ${index + 1}:` }}
+      <a v-for="(card, index) in set" :key="`${card}@${index}`" class="">
+        {{ card }}
+      </a>
     </div>
   </div>
 </template>

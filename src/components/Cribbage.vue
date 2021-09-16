@@ -67,18 +67,21 @@ export default {
     },
     getPairPoints(cardsMap) {
       let numCombos = 0;
+      //Get number of points using combinations
       Object.values(cardsMap).forEach(
         (p) => (numCombos += helpers.getNumCombos(p))
       );
+
+      //Get cards of pairs using loop
       let pairCards = [];
-      Object.keys(cardsMap).forEach((key) => {
-        const numCards = cardsMap[key].length;
+      Object.keys(cardsMap).forEach((face) => {
+        const numCards = cardsMap[face].length;
         if (numCards >= 2) {
-          let toPush = {};
-          toPush[key] = numCards;
-          pairCards.push(toPush);
+          pairCards.push(new Array(numCards).fill(face));
         }
       });
+
+      //Return results
       this.cardsResult.pairs.points += 2 * numCombos;
       this.cardsResult.pairs.cards = pairCards;
     },
