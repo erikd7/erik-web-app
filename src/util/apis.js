@@ -16,7 +16,7 @@ import axios from "axios";
 
 export const resumeInfo = {
   get: async () => {
-    const response = axiosGet("http://127.0.0.1:5000/resume/");
+    const response = axiosGet("http://127.0.0.1:5000/resume");
     return response;
   },
 };

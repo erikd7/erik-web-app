@@ -1,21 +1,11 @@
-from flask import Flask, request, jsonify, request
-from flask_cors import CORS
-from flask_restful import Resource, Api, reqparse
-
-app = Flask(__name__)
-CORS(app)
-api = Api(app)
-
-def checkAuth(request):
-    headers = request.headers
-    auth = headers.get("x-api-key")
-    if auth == '917bac03-ca89-49dc-8c6b-ea1a62ceea11':
-        return {"ok": True}
-    else:
-        return {"ok": False, "message": "You are not authorized to access this resource"}
+from flask import Flask, request, jsonify
+from flask_restful import Resource
+from middleware import checkAuth
 
 class ResumeInfo(Resource):
-    resumeInfo = {
+    path = '/resume'
+    
+    data = {
         "contactDetails": [
         {
             "label": "email",
@@ -125,16 +115,12 @@ class ResumeInfo(Resource):
         },
         ]
     };
+
     def get(self):
         authResponse = checkAuth(request);
         if (not authResponse['ok']):
             return authResponse, 401 
-        response = jsonify(self.resumeInfo); 
+        response = jsonify(self.data); 
        
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response;
-
-api.add_resource(ResumeInfo, '/resume/')
-
-if __name__ == "__main__":
-  app.run(debug=True)
