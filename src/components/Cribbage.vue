@@ -2,7 +2,7 @@
   <div class="flex flex-col">
     <div class="p-b-10">
       enter points placeholder
-      <button class="button" @click="calculatePoints()">
+      <button class="button" @click="calculatePoints">
         Count Points
       </button>
     </div>
