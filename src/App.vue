@@ -14,6 +14,7 @@ import Home from "./components/Home.vue";
 import Resume from "./components/Resume.vue";
 import Menu from "./components/Menu.vue";
 import Cribbage from "./components/Cribbage.vue";
+import Chess from "./components/Chess.vue";
 
 export default {
   name: "App",
@@ -35,6 +36,7 @@ export default {
     Resume,
     Menu,
     Cribbage,
+    Chess,
   },
   computed: {
     sections() {
@@ -46,7 +48,7 @@ export default {
           template: "<Resume />",
           props: { resume: this.resume },
         },
-        cover: { name: "Cover", key: "cover", template: "<Cover />" },
+        chess: { name: "Chess", key: "chess", template: "<Chess />" },
         personalInfo: {
           name: "Personal Info",
           key: "personalInfo",
@@ -104,5 +106,9 @@ export default {
 }
 .link:hover {
   text-decoration: underline;
+}
+.sidebar-container {
+  position: absolute;
+  float: left;
 }
 </style>

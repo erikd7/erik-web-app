@@ -21,6 +21,20 @@ export const resumeInfo = {
   },
 };
 
+export const chessNewGame = {
+  get: async () => {
+    const response = axiosGet("http://127.0.0.1:5000/chess/new-game");
+    return response;
+  },
+};
+
+export const chessMakeMove = {
+  post: async (body) => {
+    const response = axiosPost("http://127.0.0.1:5000/chess/make-move", body);
+    return response;
+  },
+};
+
 //Axios method wrappers
 export const axiosGet = async (url, queryParams) => {
   const response = await axios({
@@ -37,6 +51,25 @@ export const axiosGet = async (url, queryParams) => {
   }
   console.log(
     `Error in axios GET at url '${url}. Message: ${response.toString()}`
+  );
+  return { ok: false, message: response.message };
+};
+
+export const axiosPost = async (url, body) => {
+  const response = await axios({
+    method: "post",
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "x-api-key": "917bac03-ca89-49dc-8c6b-ea1a62ceea11",
+    },
+    url,
+    data: body,
+  });
+  if (response.status === 200 || response.status === 204) {
+    return { ok: true, data: response.data };
+  }
+  console.log(
+    `Error in axios POST at url '${url}. Message: ${response.toString()}`
   );
   return { ok: false, message: response.message };
 };
