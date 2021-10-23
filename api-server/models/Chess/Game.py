@@ -1,4 +1,4 @@
-from .Helpers import opponent
+from .Helpers import opponent, updateAllowedMoves
 
 class Game:
 
@@ -14,7 +14,7 @@ class Game:
             "d1": 'wqd',
             "e1": 'wke',
             "f1": 'wbf',
-            "g1": 'wnh',
+            "g1": 'wng',
             "h1": 'wrh',
             #white pawns
             "a2": 'wpa',
@@ -32,7 +32,7 @@ class Game:
             "d8": 'bqd',
             "e8": 'bke',
             "f8": 'bbf',
-            "g8": 'bnh',
+            "g8": 'bng',
             "h8": 'brh',
             #black pawns
             "a7": 'bpa',
@@ -79,6 +79,14 @@ class Game:
                 "h3": True,
                 "h4": True
             },
+            "wnb": {
+                "a3": True,
+                "c3": True
+            },
+            "wng": {
+                "f3": True,
+                "h3": True
+            },
             "bpa": {
                 "a6": True,
                 "a5": True
@@ -110,6 +118,14 @@ class Game:
             "bph": {
                 "h6": True,
                 "h5": True
+            },
+            "bnb": {
+                "a6": True,
+                "c6": True
+            },
+            "bng": {
+                "f6": True,
+                "h6": True
             },
         }
 
@@ -148,8 +164,20 @@ class Game:
         }
 
     def makeMove(self):
+        #Check if move is valid
+        #for now assume what's coming in is valid. in future, validate the move first
+
+        #check for moving into/out of mate
+
+        #Move the pieces
        self.board[self.toSquare] = self.board[self.fromSquare] 
        self.board[self.fromSquare] = ""
+
+       #todo: Check for mate
+
+       #Update allowed moves
+       allowedMoves = updateAllowedMoves(self)
+       self.allowedMoves = allowedMoves
 
        self.endMove()
 
