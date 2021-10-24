@@ -84,10 +84,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 .square {
-  height: 70px;
-  width: 70px;
+        height: calc(0.7 * 100vmin / 8);
+        width: calc(0.7 * 100vmin / 8);
   border: none;
-  font-size: 50px;
+        font-size: calc(0.7 * 100vmin / 8);
   padding: 5px;
   text-align: center;
   display: flex;
@@ -100,7 +100,7 @@ export default {
 }
 .square:hover {
   filter: drop-shadow(2px 4px 6px black);
-  font-size: 70px;
+        font-size: calc(1.1 * 0.7 * 100vmin / 8);
 }
 .dark-square {
   background-color: lightslategrey;
