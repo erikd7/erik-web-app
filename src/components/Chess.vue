@@ -1,11 +1,13 @@
 <template>
   <div>
-    <div class="sidebar-container">
-      <button class="button" @click="newGame">
-        New Game
-      </button>
+    <Sidebar>
+      <div>
+        <button class="button" @click="newGame">
+          New Game
+        </button>
+      </div>
       <div>To Move: {{ toMoveColor }}</div>
-    </div>
+    </Sidebar>
     <div class="board-holder">
       <Board :game="game" @gameUpdate="gameUpdate" />
     </div>
@@ -14,6 +16,7 @@
 
 <script>
 import Board from "../SharedComponents/Chess/Board.vue";
+import Sidebar from "../SharedComponents/Sidebar.vue";
 import { colorDisplay } from "../util/chessHelpers";
 import * as api from "../util/apis";
 
@@ -24,7 +27,7 @@ export default {
     };
   },
   props: {},
-  components: { Board },
+  components: { Board, Sidebar },
   computed: {
     toMoveColor() {
       return colorDisplay[this.game.toMove];
