@@ -54,18 +54,26 @@ export default {
     clickSquare(rank, file) {
       const square = `${file}${rank}`;
       if (!this.game.fromSquare) {
+        //If no from square, set from square
         if (!anyPossibleMove(this.game, square)) {
           return;
         }
         this.game.fromSquare = square;
       } else if (this.game.fromSquare && this.game.toSquare) {
+        //If from square and to square, this is a new move - refresh and set from
         if (!anyPossibleMove(this.game, this.game.fromSquare)) {
           return;
         }
         this.game.fromSquare = square;
         this.game.toSquare = null;
+      } else if (square === this.game.fromSquare) {
+        //If from square clicked again, unset it as the from square
+        this.game.fromSquare = null;
       } else {
-        if (!isMoveAllowed(this.game, this.game.fromSquare, square)) {
+        if (
+          //If from square but not to square, set to square
+          !isMoveAllowed(this.game, this.game.fromSquare, square)
+        ) {
           return;
         }
         this.game.toSquare = square;

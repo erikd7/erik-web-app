@@ -14,23 +14,25 @@ import axios from "axios";
 
 //Endpoints for this Project
 
+const chessServerBaseUrl = "http://192.168.86.20:5000";
+
 export const resumeInfo = {
   get: async () => {
-    const response = axiosGet("http://127.0.0.1:5000/resume");
+    const response = axiosGet(chessServerBaseUrl + "/resume");
     return response;
   },
 };
 
 export const chessNewGame = {
   get: async () => {
-    const response = axiosGet("http://127.0.0.1:5000/chess/new-game");
+    const response = axiosGet(chessServerBaseUrl + "/chess/new-game");
     return response;
   },
 };
 
 export const chessMakeMove = {
   post: async (body) => {
-    const response = axiosPost("http://127.0.0.1:5000/chess/make-move", body);
+    const response = axiosPost(chessServerBaseUrl + "/chess/make-move", body);
     return response;
   },
 };
