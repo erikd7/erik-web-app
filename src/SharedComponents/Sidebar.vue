@@ -20,7 +20,6 @@
 }
 .sidebar-container > div {
   padding: 10px;
-  width: 500px;
   overflow-x: hidden;
 }
 .sidebar-container > div > div {

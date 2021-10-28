@@ -171,10 +171,9 @@ class Game:
 
         #Move the pieces
        self.board[self.toSquare] = self.board[self.fromSquare] 
-       self.board[self.fromSquare] = ""
+       del self.board[self.fromSquare]
 
        #todo: Check for mate
-
        #Update allowed moves
        allowedMoves = updateAllowedMoves(self)
        self.allowedMoves = allowedMoves
