@@ -7,7 +7,7 @@
     />
     <div v-else class="card-array">
       <!--New Column-->
-      <div class="flex-grow-0 flex-shrink">
+      <div class="flex-grow-1 flex-shrink">
         <!--Photo-->
         <CardTile class="flex-grow-0-imp">
           <div class="flex-container flex justify-center">

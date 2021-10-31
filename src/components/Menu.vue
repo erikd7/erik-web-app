@@ -1,20 +1,22 @@
 <template>
   <div>
     <div class="menu">
-      <router-link
+      <div
         v-for="section in sections"
         :key="section.path"
-        :to="section.path"
+        class="menu-item-spacer"
       >
-        <div
-          class="menu-item"
-          :class="{
-            'menu-item-selected': section.path === current,
-          }"
-        >
-          {{ section.name }}
-        </div>
-      </router-link>
+        <router-link :to="section.path">
+          <div
+            class="menu-item"
+            :class="{
+              'menu-item-selected': section.path === current,
+            }"
+          >
+            {{ section.name }}
+          </div>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -38,15 +40,19 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style scoped>
 .menu {
   display: flex;
   flex-flow: row;
-  justify-content: space-around;
+  justify-content: center;
+}
+.menu-item-spacer {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 .menu-item {
   color: black;
-  border-radius: 15px;
+  border-radius: 5px;
   padding: 5px;
 }
 .menu-item:hover {
