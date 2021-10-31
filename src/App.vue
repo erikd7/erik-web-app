@@ -38,15 +38,21 @@ export default {
   color: black;
   display: flex;
   flex-flow: wrap;
-  padding: 10px;
+  height: 100vh;
+  overflow-y: hidden;
 }
 .menuPane {
   width: 100%;
-  margin: 20px 0px;
   border-bottom: 2px solid #60789e;
+  padding: 5px;
+  height: 45px;
 }
 .mainPane {
+  height: calc(100vh - 45px);
+  overflow-y: auto;
   width: 100%;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 .button {
   color: white;
@@ -65,5 +71,27 @@ export default {
 }
 .link:hover {
   text-decoration: underline;
+}
+.middle {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media only screen and (min-device-width: 480px) {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: unset;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 }
 </style>

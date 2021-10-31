@@ -25,26 +25,3 @@ export default {
   },
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
-.menu {
-  display: flex;
-  flex-flow: row;
-  justify-content: space-around;
-}
-.menu-item {
-  color: black;
-  border-radius: 3px;
-  padding: 5px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
-.menu-item:hover {
-  color: white;
-  background-color: #60789e;
-  cursor: pointer;
-}
-</style>

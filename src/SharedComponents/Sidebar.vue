@@ -1,7 +1,7 @@
 <template>
   <div>
     <label for="sidebar-hamburger" class="sidebar-hamburger">&#9776;</label>
-    <input type="checkbox" id="sidebar-hamburger" class="opacity-0" />
+    <input type="checkbox" id="sidebar-hamburger" class="hidden" />
     <div class="sidebar-container">
       <div>
         <slot />
@@ -35,6 +35,7 @@
   }
   .sidebar-hamburger {
     display: block;
+    size: 30px;
   }
   #sidebar-hamburger:checked ~ .sidebar-container {
     transition: all 1s;

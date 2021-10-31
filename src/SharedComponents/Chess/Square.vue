@@ -86,8 +86,8 @@ export default {
 .square {
   height: calc(0.7 * 100vmin / 8);
   width: calc(0.7 * 100vmin / 8);
-  border: none;
   font-size: calc(0.7 * 100vmin / 8);
+  border: none;
   padding: 5px;
   text-align: center;
   display: flex;
@@ -119,5 +119,12 @@ export default {
 }
 .last-to-square {
   background-color: #c6d875;
+}
+@media only screen and (max-device-width: 480px) {
+  .square {
+    height: calc(0.9 * 100vmin / 8);
+    width: calc(0.9 * 100vmin / 8);
+    font-size: calc(0.9 * 100vmin / 8);
+  }
 }
 </style>
