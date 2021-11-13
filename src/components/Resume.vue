@@ -7,7 +7,7 @@
     />
     <div v-else class="card-array">
       <!--New Column-->
-      <div class="flex-grow-1 flex-shrink">
+      <div class="flex-grow flex-shrink-0">
         <!--Photo-->
         <CardTile class="flex-grow-0-imp">
           <div class="flex-container flex justify-center">
@@ -55,7 +55,7 @@
         </CardTile>
       </div>
       <!--New Column-->
-      <div class="flex-grow">
+      <div class="flex-grow-fast">
         <!--Education-->
         <a v-for="(education, index) in resumeInfo.educationList" :key="index">
           <CardTile>
@@ -103,7 +103,7 @@
         </CardTile>
       </div>
       <!--New Column-->
-      <div class="flex-grow">
+      <div class="flex-grow-fast">
         <CardTile header="Experience">
           <div>experience - NM</div>
         </CardTile>
@@ -208,5 +208,8 @@ export default {
 }
 .flex-grow-0-imp {
   flex-grow: 0 !important;
+}
+.flex-grow-fast {
+  flex-grow: 3;
 }
 </style>

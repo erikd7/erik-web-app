@@ -98,10 +98,6 @@ export default {
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
 }
-.square:hover {
-  filter: drop-shadow(2px 4px 6px black);
-  font-size: calc(1.1 * 0.7 * 100vmin / 8);
-}
 .dark-square {
   background-color: lightslategrey;
 }
@@ -125,6 +121,12 @@ export default {
     height: calc(0.9 * 100vmin / 8);
     width: calc(0.9 * 100vmin / 8);
     font-size: calc(0.9 * 100vmin / 8);
+  }
+}
+@media only screen and (min-device-width: 480px) {
+  .square:hover {
+    filter: drop-shadow(2px 4px 6px black);
+    font-size: calc(1.1 * 0.7 * 100vmin / 8);
   }
 }
 </style>
