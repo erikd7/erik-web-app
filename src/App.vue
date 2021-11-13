@@ -44,15 +44,16 @@ export default {
 .menuPane {
   width: 100%;
   border-bottom: 2px solid #60789e;
+  box-shadow: 0px 0px 5px grey;
   padding: 5px;
   height: 45px;
+  z-index: 5;
 }
 .mainPane {
   height: calc(100vh - 45px);
   overflow-y: auto;
   width: 100%;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding: 5px;
 }
 .button {
   color: white;
