@@ -14,7 +14,7 @@ import axios from "axios";
 
 //Endpoints for this Project
 
-const chessServerBaseUrl = "http://192.168.86.29:5000";
+const chessServerBaseUrl = "http://192.168.86.200:49155";
 
 export const resumeInfo = {
   get: async () => {
