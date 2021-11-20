@@ -2,6 +2,9 @@
     <div class="card">
         <div v-if="header" class="card-header">
             {{ header }}
+            <div v-if="subHeader" class="card-subheader">
+                {{ subHeader }}
+            </div>
         </div>
         <slot></slot>
     </div>
@@ -14,6 +17,10 @@
         },
         props: {
             header: {
+                type: String,
+                default: '',
+            },
+            subHeader: {
                 type: String,
                 default: '',
             },
@@ -40,5 +47,8 @@
     .card-header {
         border-bottom: 1px solid grey;
         font-size: larger;
+    }
+    .card-subheader {
+        font-size: small;
     }
 </style>
