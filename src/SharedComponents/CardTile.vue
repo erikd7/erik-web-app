@@ -6,7 +6,9 @@
                 {{ subHeader }}
             </div>
         </div>
-        <slot></slot>
+        <div>
+            <slot></slot>
+        </div>
     </div>
 </template>
 
@@ -36,6 +38,11 @@
         border-radius: 10px;
         background-color: #c3cfe9;
         text-align: center;
+        transition: all 0.15s ease-in-out;
+    }
+    .card:hover {
+        transform: scale(1.01);
+        filter: drop-shadow(2px 4px 6px #425677);
     }
     .card-title {
         font-weight: bold;

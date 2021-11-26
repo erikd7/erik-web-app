@@ -7,6 +7,8 @@ class ResumeInfo(Resource):
     path = '/resume'
 
     data = {
+        "name":
+        "Erik Dietrich",
         "contactDetails": [
             {
                 "label": "email",
@@ -45,6 +47,12 @@ class ResumeInfo(Resource):
                 "tooltip": "My GitHub profile - including this repo",
                 "url": "https://github.com/normalone7",
             },
+            {
+                "title": "Docker",
+                "tooltip":
+                "My Docker profile - including the containers for this app",
+                "url": "https://hub.docker.com/u/normalone7",
+            },
         ],
         "skillsCore": [
             {
@@ -69,7 +77,7 @@ class ResumeInfo(Resource):
                 "level": 2,
             },
             {
-                "name": "SQL",
+                "name": "SQL (Sequel Server & Postgres)",
                 "details": "5 years university and professional experience",
                 "level": 3,
             },
@@ -97,15 +105,31 @@ class ResumeInfo(Resource):
         ],
         "skillsAdditional": [
             {
-                "name": "Axios.js & Express.js",
+                "name": "Axios.js",
                 "details":
-                "2 years professional experience and independent stoudy",
+                "2 years professional experience and independent work",
+                "level": 2
+            },
+            {
+                "name": "Express.js",
+                "details":
+                "2 years professional experience and independent work",
                 "level": 2
             },
             {
                 "name": "Flask",
-                "details": "1 year independent stoudy",
+                "details": "1 year independent work",
                 "level": 2
+            },
+            {
+                "name": "pip",
+                "details": "1 year independent work",
+                "level": 2
+            },
+            {
+                "name": "Jest",
+                "details": "1 year professional experience",
+                "level": 2,
             },
             {
                 "name": "Bootstrap",
@@ -129,6 +153,12 @@ class ResumeInfo(Resource):
                 "level": 1,
             },
             {
+                "name": "JSON",
+                "details":
+                "3 years professional experience and independent work",
+                "level": 3,
+            },
+            {
                 "name": "Docker",
                 "details":
                 "1 year professional experience and independent work",
@@ -139,11 +169,77 @@ class ResumeInfo(Resource):
                 "details":
                 "1 year professional experience including S3, CloudWatch, lambdas, serverless functions",
             },
+            {
+                "name": "Kubernetes",
+                "details": "1 year limited professional experience",
+            },
+            {
+                "name": "Visual Studio Pro",
+                "details":
+                "3 years professional experience and independent work",
+            },
+            {
+                "name": "VS Code",
+                "details":
+                "3 years professional experience and independent work",
+            },
+            {
+                "name": "Postman",
+                "details":
+                "2 years professional experience and independent work",
+            },
+            {
+                "name": "MS Office Suite",
+                "details":
+                "5 years professional experience and independent work",
+            },
+            {
+                "name": "GitHub",
+                "details": "2 years independent work",
+            },
+            {
+                "name": "GitLab",
+                "details":
+                "3 years professional experience and independent work",
+            },
+        ],
+        "skillsNonTech": [
+            {
+                "name": "Agile (Scaled Agile Framework)",
+                "details": "1 year professional experience"
+            },
+            {
+                "name": "Waterfall",
+                "details": "1 year professional experience"
+            },
+            {
+                "name": "Scrum (Scrum Master)",
+                "details": "1 year professional experience as Scrum Master"
+            },
+            {
+                "name": "Lean Methodology and Principles",
+                "details":
+                "3 years university study and professional experience"
+            },
+            {
+                "name": "Full Stack Design",
+            },
+            {
+                "name": "UI/UX and Accessibility",
+            },
+            {
+                "name": "Meeting Facilitation",
+            },
+            {
+                "name": "Presentations",
+            },
         ],
         "experienceList": [
             {
                 "organization":
                 "Northwestern Mutual",
+                "location":
+                "Remote and Milwaukee, WI",
                 "title":
                 "Software Engineer II",
                 "start":
@@ -154,6 +250,8 @@ class ResumeInfo(Resource):
             {
                 "organization":
                 "Epic",
+                "location":
+                "Madison, WI",
                 "title":
                 "Software Engineer and Project Manager",
                 "start":
@@ -162,6 +260,32 @@ class ResumeInfo(Resource):
                 "2021",
                 "description":
                 "As a Software Developer: Led design and development of customer-facing web app for supporting software implementation planning. Used SQL, C#, JS Vue, and HTML/CSS with GitLab. Coordinated all parts of the SDLC, from initial scoping and design through development, testing, go-live, and continuous improvement.\nAs a Project Manager: responsible for configuring large-scale software suite for healthcare organizations. Managed 20-member team. Member of Epic’s Infection Control Product Leads team during the COVID-19 response."
+            },
+            {
+                "organization":
+                "Wolverine Advanced Materials",
+                "location":
+                "Blacksburg, VA",
+                "title":
+                "Industrial Engineer",
+                "start":
+                "Summer 2017",
+                "end":
+                "Winter 2017",
+                "description":
+                "Used lean principles, data analysis, and simulation to implement a just-in-time model to decrease inventory while increasing manufacturing throughput."
+            },
+            {
+                "organization":
+                "Siemens-Sivantos Group",
+                "location":
+                "New Brunswick, NJ",
+                "title":
+                "Industrial Engineer",
+                "startAndEnd":
+                "Summer 2016",
+                "description":
+                "Led hearing aid battery failure analysis project, including experimental design, hardware testing, data acquisition and wrangling, analysis, and reporting to management."
             },
         ],
     }
