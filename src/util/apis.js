@@ -18,21 +18,21 @@ const chessServerBaseUrl = "http://192.168.86.200:49155";
 
 export const resumeInfo = {
   get: async () => {
-    const response = axiosGet(chessServerBaseUrl + "/resume");
+    const response = axiosGet(erikWebAppServerBaseUrl + "/resume");
     return response;
   },
 };
 
 export const chessNewGame = {
   get: async () => {
-    const response = axiosGet(chessServerBaseUrl + "/chess/new-game");
+    const response = axiosGet(erikWebAppServerBaseUrl + "/chess/new-game");
     return response;
   },
 };
 
 export const chessMakeMove = {
   post: async (body) => {
-    const response = axiosPost(chessServerBaseUrl + "/chess/make-move", body);
+    const response = axiosPost(erikWebAppServerBaseUrl + "/chess/make-move", body);
     return response;
   },
 };

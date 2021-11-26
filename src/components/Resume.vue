@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="mainPane-container">
         <LoadingOrError
             v-if="loadingMessage || errorMessage"
             :loadingMessage="loadingMessage"
@@ -20,7 +20,7 @@
                     </div>
                 </CardTile>
                 <!--Contact Info-->
-                <CardTile header="Contact Information">
+                <CardTile :header="resumeInfo.name">
                     <div class="flex flex-col">
                         <div
                             v-for="detail in resumeInfo.contactDetails"
@@ -59,21 +59,6 @@
             </div>
             <!--New Column-->
             <div class="flex-grow-fast flex-shrink-0">
-                <!--Skills-->
-                <CardTile header="Core Skills">
-                    <SkillsList
-                        :skills="resumeInfo.skillsCore"
-                        :sort="skills => skills"
-                    ></SkillsList>
-                </CardTile>
-                <CardTile header="Additional Skills">
-                    <SkillsList
-                        :skills="resumeInfo.skillsAdditional"
-                    ></SkillsList>
-                </CardTile>
-            </div>
-            <!--New Column-->
-            <div class="flex-grow-fast flex-shrink-0">
                 <!--Education-->
                 <span
                     v-for="(education, index) in resumeInfo.educationList"
@@ -81,13 +66,13 @@
                 >
                     <CardTile>
                         <div class="card-header">
-                            <a class="font-bold">
+                            <a class="">
                                 {{ education.institution.name }}
                             </a>
                             <a class="text-sm">
                                 class of
                             </a>
-                            <a class="font-bold">
+                            <a class="">
                                 {{ education.graduationYear }}
                             </a>
                         </div>
@@ -122,15 +107,41 @@
                             `${experience.title}, ${experience.organization}`
                         "
                         :subHeader="
-                            `${experience.start} — ${experience.end ||
-                                'present'}`
+                            `${experience.location} | ${
+                                experience.start
+                            } — ${experience.end || 'present'}`
                         "
                     >
-                        <div class="text-left">{{
+                        <div class="text-left whitespace-pre-line">{{
                             experience.description
                         }}</div>
                     </CardTile>
                 </span>
+            </div>
+            <!--New Column-->
+            <div class="flex-grow flex-shrink-0">
+                <!--Skills-->
+                <CardTile header="Core Technical Skills">
+                    <TagArray
+                        :array="resumeInfo.skillsCore"
+                        labelKey="name"
+                        tooltipKey="details"
+                    />
+                </CardTile>
+                <CardTile header="Additional Technical Skills">
+                    <TagArray
+                        :array="resumeInfo.skillsAdditional"
+                        labelKey="name"
+                        tooltipKey="details"
+                    />
+                </CardTile>
+                <CardTile header="Soft Skills">
+                    <TagArray
+                        :array="resumeInfo.skillsNonTech"
+                        labelKey="name"
+                        tooltipKey="details"
+                    />
+                </CardTile>
             </div>
         </div>
     </div>
@@ -138,12 +149,12 @@
 
 <script>
     import CardTile from '../SharedComponents/CardTile';
-    import SkillsList from '../SharedComponents/SkillsList';
     import LoadingOrError from '../SharedComponents/LoadingOrError';
+    import TagArray from '../SharedComponents/TagArray.vue';
     import * as api from '../util/apis';
 
     export default {
-        components: { CardTile, SkillsList, LoadingOrError },
+        components: { CardTile, LoadingOrError, TagArray },
         props: {
             resume: {
                 type: Object,
@@ -196,6 +207,12 @@
         flex-direction: column;
         flex-wrap: wrap;
         flex-basis: 200px;
+    }
+    @media only screen and (max-width: 650px) {
+        .card-array > div {
+            flex-basis: 51% !important;
+            flex-shrink: 0 !important;
+        }
     }
     .card-array > div > div {
         flex-grow: 1;
