@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import Menu from "./components/Menu.vue";
-import { routes } from "./router/index";
+    import Menu from './components/Menu.vue';
+    import { routes } from './router/index';
 
     export default {
-  name: "App",
+        name: 'App',
         components: {
             Menu,
         },
