@@ -8,7 +8,7 @@ RUN npm install -g http-server
 WORKDIR /app
 
 # copy both 'package.json' and 'package-lock.json' (if available)
-COPY README.md package*.json ./
+COPY package*.json ./
 
 # install project dependencies
 RUN npm install
