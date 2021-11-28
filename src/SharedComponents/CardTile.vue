@@ -1,6 +1,6 @@
 <template>
-    <div class="card">
-        <div v-if="header" class="card-header">
+    <div class="card" :class="{ grow: hoverGrow }">
+        <div v-if="header" :class="`card-header ${headerClass}`">
             {{ header }}
             <div v-if="subHeader" class="card-subheader">
                 {{ subHeader }}
@@ -22,9 +22,17 @@
                 type: String,
                 default: '',
             },
+            headerClass: {
+                type: String,
+                default: '',
+            },
             subHeader: {
                 type: String,
                 default: '',
+            },
+            hoverGrow: {
+                type: Boolean,
+                default: true,
             },
         },
     };
@@ -40,7 +48,7 @@
         text-align: center;
         transition: all 0.15s ease-in-out;
     }
-    .card:hover {
+    .grow:hover {
         transform: scale(1.01);
         filter: drop-shadow(2px 4px 6px #425677);
     }
