@@ -14,7 +14,7 @@ import axios from "axios";
 
 //Endpoints for this Project
 
-const erikWebAppServerBaseUrl = "http://192.168.86.200:49155";
+const erikWebAppServerBaseUrl = "http://api.edietrich.com";
 
 export const resumeInfo = {
   get: async () => {
@@ -32,7 +32,10 @@ export const chessNewGame = {
 
 export const chessMakeMove = {
   post: async (body) => {
-    const response = axiosPost(erikWebAppServerBaseUrl + "/chess/make-move", body);
+    const response = axiosPost(
+      erikWebAppServerBaseUrl + "/chess/make-move",
+      body
+    );
     return response;
   },
 };

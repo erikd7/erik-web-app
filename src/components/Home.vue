@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex flex-row justify-center flex-wrap mobile-one-col">
+    <div class="flex flex-row justify-center flex-nowrap mobile-one-col">
       <CardTile header="About Me" headerClass="text-3xl">
         I am a full-stack developer based in Madison, WI.
         <CardTile header="Why did I make this app?" :hoverGrow="false">
@@ -43,21 +43,26 @@
             <li>Python API Server</li>
             <li>Pip Package Management</li>
             <li>Flask API Framework</li>
+            <li>Waitress WSGI Server Framework</li>
             <li>Postman for testing</li>
           </ul>
         </CardTile>
         <CardTile header="DevOps" :hoverGrow="false">
           <ul class="list-disc list-inside text-left">
-            <li>Git Source Control</li>
-            <li>GitHub Repo Hosting</li>
-            <li>Docker Runtime</li>
+            <li>Git Source Control via GitHub</li>
+            <li>Hosting</li>
             <li style="margin-left:2em">
-              2 images/containers - 1 for JS, 1 for Python
+              JS Front End
+            </li>
+            <li style="margin-left:4em">
+              Auto deploy to Vercel via GitHub Actions
             </li>
             <li style="margin-left:2em">
-              Automated Docker Image build using GitHub Actions
+              Python Back End
             </li>
-            <li>Self-hosted on Synology Server</li>
+            <li style="margin-left:4em">
+              Auto deploy Docker container to Heroku via GitHub Actions
+            </li>
           </ul>
         </CardTile>
       </CardTile>
