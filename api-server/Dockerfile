@@ -16,4 +16,4 @@ COPY . .
 
 EXPOSE 49155:49155
 ENTRYPOINT ["python3"]
-CMD ["app.py"]
+CMD ["waitress_serve.py"]
