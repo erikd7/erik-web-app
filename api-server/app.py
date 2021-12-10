@@ -17,4 +17,4 @@ if __name__ == "__main__":
   port = int(os.environ.get('PORT', 49155))
   print('Initializing and running app on port ' + str(port))
   #app.run(debug=True, host="0.0.0.0", port=port, use_reloader=False)
-  serve(app.app, host='0.0.0.0', port=port)
+  serve(app, host='0.0.0.0', port=port)
