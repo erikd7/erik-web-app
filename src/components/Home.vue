@@ -84,6 +84,9 @@ export default {
   font-weight: bold;
 }
 @media only screen and (max-width: 650px) {
+  .mobile-one-col {
+    flex-wrap: wrap;
+  }
   .mobile-one-col > div {
     flex-basis: 51% !important;
     flex-shrink: 0 !important;
