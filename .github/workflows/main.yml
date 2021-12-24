@@ -1,7 +1,5 @@
-#Build docker image for Vue and Python apps
-
-name: Docker Image CI
-
+#Build docker image for backend and push to Heroku
+name: "Backend Docker and Heroku Build"
 on:
   push:
     branches: [main]
@@ -9,11 +7,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v2
-      - name: Build the Docker image
-        run: |
-          echo "${{ secrets.DOCKER_HUB_TOKEN }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin docker.io
-          docker build . --file Dockerfile --tag docker.io/${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY_VUE }}:$GITHUB_SHA
-          docker push docker.io/${{ secrets.DOCKER_HUB_USERNAME }}/${{ secrets.DOCKER_HUB_REPOSITORY_VUE }}:$GITHUB_SHA
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build Docker-Compose and Push to Heroku
+        id: heroku
+        uses: snithyanantham/docker-compose-multiple-apps-heroku-deploy@v1.0 # use the latest version of the action
+        with:
+          email: ${{ secrets.HEROKU_EMAIL }} # your heroku email
+          api_key: ${{ secrets.HEROKU_API_KEY }} # your  heroku api key
+          docker_compose_file: ".api-server/docker-compose.yml"
+          heroku_apps: '[{"imagename":"api-server_application","appname":"erik-web-app-api","apptype":"web"},{"imagename":"api-server_nginx","appname":"erik-web-app-api","apptype":"web"}]' # List of Docker Image name, Heroku app and Heroku app type
