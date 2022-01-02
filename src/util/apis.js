@@ -14,7 +14,7 @@ import axios from "axios";
 
 //Endpoints for this Project
 
-const erikWebAppServerBaseUrl = "http://api.edietrich.com";
+const erikWebAppServerBaseUrl = "https://nas.edietrich.com:443";
 
 export const resumeInfo = {
   get: async () => {
