@@ -28,6 +28,11 @@ export default {
   },
   props: {},
   components: { Board, Sidebar },
+  mounted() {
+    const existingGame = this.$cookies.get("chessCurrentGame");
+    if (existingGame) this.game = existingGame;
+    else this.newGame();
+  },
   computed: {
     toMoveColor() {
       return colorDisplay[this.game.toMove];
@@ -35,6 +40,7 @@ export default {
   },
   methods: {
     newGame() {
+      this.$cookies.remove("chessCurrentGame");
       api.chessNewGame.get().then((response) => {
         if (response.ok) {
           this.game = response.data;
@@ -45,6 +51,7 @@ export default {
     },
     gameUpdate(game) {
       this.game = game;
+      this.$cookies.set("chessCurrentGame", game, "1d");
     },
   },
 };
