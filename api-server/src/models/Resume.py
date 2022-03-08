@@ -12,7 +12,7 @@ class ResumeInfo(Resource):
         "contactDetails": [
             {
                 "label": "email",
-                "info": "erik.dietrich.b@gmail.com",
+                "info": "erik@edietrich.com",
             },
             {
                 "label": "phone",

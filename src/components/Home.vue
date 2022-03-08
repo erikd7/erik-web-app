@@ -1,96 +1,84 @@
 <template>
-  <div>
-    <div class="flex flex-row justify-center flex-nowrap mobile-one-col">
-      <CardTile header="About Me" headerClass="text-3xl">
-        I am a full-stack developer based in Madison, WI.
-        <CardTile header="Why did I make this app?" :hoverGrow="false">
-          This is a personal project I've been working on intermittently since
-          about June 2021.
-        </CardTile>
-        <CardTile header="What's next for this app?" :hoverGrow="false">
-          Finish Cribbage points counter, continue to build out Chess app, and
-          deploy to public domain.
-        </CardTile>
-      </CardTile>
-      <CardTile header="About this App" headerClass="text-3xl">
-        <CardTile header="Resume" :hoverGrow="false">
-          My web resume
-        </CardTile>
-        <CardTile header="Chess" :hoverGrow="false">
-          A player-vs-player chess application
-        </CardTile>
-        <CardTile header="Cribbage" :hoverGrow="false">
-          A points counter for the game of Cribbage
-        </CardTile>
-      </CardTile>
-      <CardTile header="About the Tech Stack" headerClass="text-3xl">
-        <CardTile header="Front End" :hoverGrow="false">
-          <ul class="list-disc list-inside text-left">
-            <li>JavaScript</li>
-            <li>Vue.js Framework</li>
-            <li>Tailwind CSS Framework</li>
-            <li>Axios.js API Framework</li>
-          </ul>
-        </CardTile>
-        <CardTile header="Back End - JS" :hoverGrow="false">
-          <ul class="list-disc list-inside text-left">
-            <li>Node.js Framework</li>
-            <li>npm Package Manager</li>
-          </ul>
-        </CardTile>
-        <CardTile header="Back End - Python" :hoverGrow="false">
-          <ul class="list-disc list-inside text-left">
-            <li>Python API Server</li>
-            <li>Pip Package Management</li>
-            <li>Flask API Framework</li>
-            <li>Waitress WSGI Server Framework</li>
-            <li>Postman for testing</li>
-          </ul>
-        </CardTile>
-        <CardTile header="DevOps" :hoverGrow="false">
-          <ul class="list-disc list-inside text-left">
-            <li>Git Source Control via GitHub</li>
-            <li>Hosting</li>
-            <li style="margin-left:2em">
-              JS Front End
-            </li>
-            <li style="margin-left:4em">
-              Auto deploy to Vercel via GitHub Actions
-            </li>
-            <li style="margin-left:2em">
-              Python Back End
-            </li>
-            <li style="margin-left:4em">
-              Auto deploy Docker container to Heroku via GitHub Actions
-            </li>
-          </ul>
-        </CardTile>
-      </CardTile>
+    <div class="p-10">
+        <div class="flex flex-row justify-between mobile-one-col">
+            <div
+                class="flex flex-column justify-center items-center"
+                style="flex-basis: 40%;"
+            >
+                <div
+                    class="flex flex-col justify-center flex-nowrap text-6xl font-normal leading-normal mt-0 mb-1 p-2"
+                    style="color: #60789e;"
+                >
+                    <div>Erik&nbsp;</div>
+                    <div>Dietrich</div>
+                    <div class="flex flex-row justify-around text-2xl">
+                        <a
+                            href="https://www.linkedin.com/in/erik-dietrich-000506134/"
+                            target="_blank"
+                        >
+                            <i class="hover-grow cursor-pointer fab fa-linkedin" />
+                        </a>
+                        <a href="https://github.com/normalone7" target="_blank">
+                            <i class="hover-grow cursor-pointer fab fa-github" />
+                        </a>
+                        <a href="https://hub.docker.com/u/normalone7" target="_blank">
+                            <i class="hover-grow cursor-pointer fab fa-docker" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-0 mb-1 p-2 flex flex-row justify-center">
+                <img src="../data/coverPhoto.jpeg" class="image-display" />
+            </div>
+            <div
+                class="flex flex-col flex-grow justify-center items-stretch font-normal leading-normal mt-0 mb-1 p-2"
+                style="color: #60789e"
+            >
+                <div class="text-left text-4xl ">Full stack engineering&nbsp;</div>
+                <div class="text-center text-2xl"
+                    >with a strong focus on end-to-end user experience</div
+                >
+            </div>
+        </div>
+        <div> </div>
+        <div class="flex flex-row justify-center flex-nowrap mobile-one-col">
+            <CardTile header="Full Stack Engineer" headerClass="text-3xl">
+                Front and back end experience
+            </CardTile>
+            <CardTile header="Product Designer" headerClass="text-3xl">
+                Owning solutions throughout the lifecycle
+            </CardTile>
+            <CardTile header="Scrum Master" headerClass="text-3xl">
+                Embedded Scrum Master on an Agile team
+            </CardTile>
+            <CardTile header="Project Manager" headerClass="text-3xl">
+                Over 2 years project management experience
+            </CardTile>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
-import CardTile from "../SharedComponents/CardTile.vue";
-export default {
-  components: { CardTile },
-  props: {},
-};
+    import CardTile from '../SharedComponents/CardTile.vue';
+    export default {
+        components: { CardTile },
+        props: {},
+    };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.header {
-  font-weight: bold;
-}
-@media only screen and (max-width: 650px) {
-  .mobile-one-col {
-    flex-wrap: wrap;
-  }
-  .mobile-one-col > div {
-    flex-basis: 51% !important;
-    flex-shrink: 0 !important;
-    flex-grow: 1 !important;
-  }
-}
+    .header {
+        font-weight: bold;
+    }
+    @media only screen and (max-width: 650px) {
+        .mobile-one-col {
+            flex-wrap: wrap;
+        }
+        .mobile-one-col > div {
+            flex-basis: 51% !important;
+            flex-shrink: 0 !important;
+            flex-grow: 1 !important;
+        }
+    }
 </style>
