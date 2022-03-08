@@ -217,10 +217,6 @@
     .card-array > div > div {
         flex-grow: 1;
     }
-    .image-display {
-        border-radius: 10px;
-        width: 300px;
-    }
     .list-label {
         font-size: small;
     }

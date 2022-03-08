@@ -29,11 +29,11 @@
         props: {
             sections: {
                 type: Array,
-      default: () => [{ name: "Home", path: "/" }],
+                default: () => [{ name: 'Home', path: '/' }],
             },
             current: {
                 type: String,
-      default: "/home",
+                default: '/',
             },
         },
     };

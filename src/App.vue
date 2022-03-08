@@ -109,4 +109,9 @@
         top: 50%;
         position: relative;
     }
+    .image-display {
+        border-radius: 10px;
+        object-fit: cover;
+        width: 300px;
+    }
 </style>

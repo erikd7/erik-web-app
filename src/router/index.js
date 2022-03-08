@@ -16,6 +16,7 @@ import Home from "../components/Home.vue";
 import Chess from "../components/Chess.vue";
 import Resume from "../components/Resume.vue";
 import Cribbage from "../components/Cribbage.vue";
+import About from "../components/About.vue";
 
 Vue.use(VueRouter);
 
@@ -39,6 +40,11 @@ export const routes = [
     name: "Cribbage",
     path: "/cribbage",
     component: Cribbage,
+  },
+  {
+    name: "About",
+    path: "/about",
+    component: About,
   },
 ];
 
