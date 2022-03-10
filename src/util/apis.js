@@ -14,7 +14,7 @@ import axios from "axios";
 
 //Endpoints for this Project
 
-const erikWebAppServerBaseUrl = "https://nas.edietrich.com:443";
+const erikWebAppServerBaseUrl = "http://192.168.86.29:3000/api";
 
 export const resumeInfo = {
   get: async () => {
@@ -46,7 +46,6 @@ export const axiosGet = async (url, queryParams) => {
     method: "get",
     headers: {
       "Access-Control-Allow-Origin": "*",
-      "x-api-key": "917bac03-ca89-49dc-8c6b-ea1a62ceea11",
     },
     url,
     data: queryParams,
@@ -65,7 +64,6 @@ export const axiosPost = async (url, body) => {
     method: "post",
     headers: {
       "Access-Control-Allow-Origin": "*",
-      "x-api-key": "917bac03-ca89-49dc-8c6b-ea1a62ceea11",
     },
     url,
     data: body,
