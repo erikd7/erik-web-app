@@ -46,7 +46,7 @@
                 Front and back end experience
             </CardTile>
             <CardTile header="Product Designer" headerClass="text-3xl">
-                Owning solutions throughout the lifecycle
+                Creating solutions for complex business needs
             </CardTile>
             <CardTile header="Scrum Master" headerClass="text-3xl">
                 Embedded Scrum Master on an Agile team

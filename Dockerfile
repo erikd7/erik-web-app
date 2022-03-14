@@ -1,8 +1,5 @@
 # Choose the Image which has Node installed already
-FROM node:lts-alpine
-
-# install simple http server for serving static content
-RUN npm install -g http-server
+FROM mhart/alpine-node:14
 
 # make the 'app' folder the current working directory
 WORKDIR /app
@@ -20,4 +17,4 @@ COPY . .
 RUN npm run build
 
 EXPOSE 8080
-CMD [ "http-server", "dist" ]
+CMD [ "node", "serve-frontend.js" ]
