@@ -16,5 +16,6 @@ COPY . .
 # build app for production with minification
 RUN npm run build
 
-EXPOSE 8080
+EXPOSE $PORT
+EXPOSE 80
 CMD [ "node", "serve-frontend.js" ]

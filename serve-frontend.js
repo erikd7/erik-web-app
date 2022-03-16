@@ -12,7 +12,7 @@ const corsConfig = {
 };
 
 //Vue frontend server
-const vueHttpListenerPort = 8080;
+const vueHttpListenerPort = process.env.PORT || 80;
 const vueApp = express();
 
 vueApp.use(cors(corsConfig));

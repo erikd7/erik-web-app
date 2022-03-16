@@ -14,7 +14,7 @@ import axios from "axios";
 
 //Endpoints for this Project
 
-const erikWebAppServerBaseUrl = "http://192.168.86.29:3000/api";
+const erikWebAppServerBaseUrl = "http://localhost:3000/api";
 
 export const resumeInfo = {
   get: async () => {
