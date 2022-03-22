@@ -27,6 +27,7 @@ vueApp.use((req, res, next) => {
     "Access-Control-Allow-Methods",
     "DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT"
   );
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
 
   next();
 });
@@ -43,11 +44,7 @@ console.log(`Serving Vue app on HTTP port ${vueHttpListenerPort}`);
 //Proxy server
 const proxyHttpListenerPort = 3000;
 const proxyApp = express();
-
 proxyApp.use(cors(corsConfig));
-
-const proxyHttpServer = http.createServer(proxyApp);
-//const proxyHttpsServer = https.createServer(credentials, proxyApp);
 
 const backendHost = "https://nas.edietrich.com:443/";
 
@@ -94,14 +91,16 @@ proxyApp.use(
       proxyReqOpts.headers["Access-Control-Allow-Origin"] = "*";
       proxyReqOpts.headers["Access-Control-Allow-Methods"] =
         "DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT";
-      proxyReqOpts.headers["Origin"] = "http://localhost:8080";
-      proxyReqOpts.headers["Host"] = "192.168.86.29:49155";
+      proxyReqOpts.headers["Origin"] = "http://localhost:80";
+      //proxyReqOpts.headers["Host"] = "192.168.86.29:49155";
 
       return proxyReqOpts;
     },
   })
 );
 
+const proxyHttpServer = http.createServer(proxyApp);
+//const proxyHttpsServer = https.createServer(credentials, proxyApp);
 proxyHttpServer.listen(proxyHttpListenerPort);
 console.log(`Proxy listening on HTTP port ${proxyHttpListenerPort}`);
 //httpsServer.listen(httpsListenerPort);
