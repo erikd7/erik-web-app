@@ -1,8 +1,11 @@
 #Build docker image for backend and push to Heroku
-name: "Backend Docker and Heroku Build"
+#Formerly used snithyanantham/docker-compose-multiple-apps-heroku-deploy base action
+name: Deploy Vue and Frontend Proxy
+
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   build:
@@ -10,11 +13,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Build Docker-Compose and Push to Heroku
-        id: heroku
-        uses: snithyanantham/docker-compose-multiple-apps-heroku-deploy@v1.0 # use the latest version of the action
+      - name: Deploy Vue and Frontend Proxy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12 # base action
         with:
-          email: ${{ secrets.HEROKU_EMAIL }} # your heroku email
-          api_key: ${{ secrets.HEROKU_API_KEY }} # your  heroku api key
-          docker_compose_file: "./api-server/docker-compose.yml"
-          heroku_apps: '[{"imagename":"api-server_application","appname":"erik-web-app-api","apptype":"web"},{"imagename":"api-server_nginx","appname":"erik-web-app-api-ngnix","apptype":"web"}]' # List of Docker Image name, Heroku app and Heroku app type
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: "erik-web-app"
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
