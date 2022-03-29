@@ -13,7 +13,6 @@
 import axios from "axios";
 
 //Endpoints for this Project
-
 const erikWebAppServerBaseUrl = "http://localhost:3000/api";
 
 export const resumeInfo = {
