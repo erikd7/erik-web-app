@@ -13,8 +13,7 @@
 import axios from "axios";
 
 //Endpoints for this Project
-
-const erikWebAppServerBaseUrl = "http://192.168.86.29:3000/api";
+const erikWebAppServerBaseUrl = "http://localhost:3000/api";
 
 export const resumeInfo = {
   get: async () => {
@@ -50,9 +49,17 @@ export const axiosGet = async (url, queryParams) => {
     url,
     data: queryParams,
   });
-  if (response.status === 200 || response.status === 204) {
-    return { ok: true, data: response.data };
+  if (response.status === 200) {
+    console.log("data is ", response.data);
+    if (response.data) {
+      return { ok: true, data: response.data };
+    } else {
+      return { ok: false, message: "Call succeeded but no data was returned." };
+    }
+  } else if (response.status === 204) {
+    return { ok: true };
   }
+
   console.log(
     `Error in axios GET at url '${url}. Message: ${response.toString()}`
   );

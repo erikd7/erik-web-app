@@ -1,0 +1,17 @@
+version: "3.2"
+
+services:
+  vue:
+    image: normalone7/erik-web-app-vue:latest
+    #command: node serve-frontend-vue.js
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - proxy
+
+  proxy:
+    image: normalone7/erik-web-app-proxy:latest
+    #command: node serve-frontend-proxy.js
+    ports:
+      - 3000:3000
