@@ -13,7 +13,7 @@
 import axios from "axios";
 
 //Endpoints for this Project
-const erikWebAppServerBaseUrl = "http://localhost:3000/api";
+const erikWebAppServerBaseUrl = "https://erik-web-app-api.herokuapp.com";
 
 export const resumeInfo = {
   get: async () => {
@@ -40,17 +40,18 @@ export const chessMakeMove = {
 };
 
 //Axios method wrappers
+const defaultHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "x-api-key": "917bac03-ca89-49dc-8c6b-ea1a62ceea11", //TODO - replace with env variable and possibly add in frontend proxy to hide from devtools
+};
 export const axiosGet = async (url, queryParams) => {
   const response = await axios({
     method: "get",
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-    },
+    headers: defaultHeaders,
     url,
     data: queryParams,
   });
   if (response.status === 200) {
-    console.log("data is ", response.data);
     if (response.data) {
       return { ok: true, data: response.data };
     } else {
@@ -69,9 +70,7 @@ export const axiosGet = async (url, queryParams) => {
 export const axiosPost = async (url, body) => {
   const response = await axios({
     method: "post",
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-    },
+    headers: defaultHeaders,
     url,
     data: body,
   });

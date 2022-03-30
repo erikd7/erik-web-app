@@ -3,6 +3,7 @@ const proxy = require("express-http-proxy");
 const cors = require("cors");
 const http = require("http");
 //const https = require("https");
+//const fs = require("fs");
 
 //Shared
 const corsConfig = {
@@ -12,8 +13,15 @@ const corsConfig = {
 
 //Proxy server
 const proxyHttpListenerPort = 3000;
+//const proxyHttpsListenerPort = 3000;
 const proxyApp = express();
 proxyApp.use(cors(corsConfig));
+
+//Cert
+/*const credentials = {
+  key: fs.readFileSync("server.key"),
+  cert: fs.readFileSync("server.cert"),
+};*/
 
 const backendHost = "https://nas.edietrich.com:443/";
 
@@ -33,6 +41,7 @@ proxyApp.options("/", function(req, res) {
     "Access-Control-Allow-Headers",
     "Content-Type, Authorization, Content-Length, X-Requested-With"
   );
+  res.header("Access-Control-Allow-Private-Network", true);
   res.send(200);
 });
 
@@ -46,6 +55,7 @@ proxyApp.use((req, res, next) => {
     "Access-Control-Allow-Methods",
     "DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT"
   );
+  res.header("Access-Control-Allow-Private-Network", true);
 
   next();
 });
@@ -61,7 +71,6 @@ proxyApp.use(
       proxyReqOpts.headers["Access-Control-Allow-Methods"] =
         "DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT";
       proxyReqOpts.headers["Origin"] = "http://localhost:80";
-      //proxyReqOpts.headers["Host"] = "192.168.86.29:49155";
 
       return proxyReqOpts;
     },
@@ -70,6 +79,10 @@ proxyApp.use(
 
 const proxyHttpServer = http.createServer(proxyApp);
 //const proxyHttpsServer = https.createServer(credentials, proxyApp);
-proxyHttpServer.listen(proxyHttpListenerPort);
-console.log(`Proxy listening on HTTP port ${proxyHttpListenerPort}`);
-//httpsServer.listen(httpsListenerPort);
+proxyHttpServer.listen(proxyHttpListenerPort, () => {
+  console.log(`Proxy listening on HTTP port ${proxyHttpListenerPort}`);
+});
+
+/*proxyHttpsServer.listen(proxyHttpsListenerPort, () => {
+  console.log(`Proxy listening on HTTPS port ${proxyHttpsListenerPort}`);
+});*/
