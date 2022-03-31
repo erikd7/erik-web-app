@@ -7,6 +7,7 @@
                 'menu-pane-expanded': isExpanded,
             }"
             @Click="toggleExpanded"
+            v-on-clickaway="toggleOffExpanded"
         >
             <Menu
                 :sections="routes"
@@ -23,6 +24,7 @@
 <script>
     import Menu from './components/Menu.vue';
     import { routes } from './router/index';
+    import { mixin as clickaway } from 'vue-clickaway';
 
     export default {
         name: 'App',
@@ -43,11 +45,15 @@
             },
         },
         methods: {
-            toggleExpanded() {
+            toggleExpanded(forcedValue) {
+                if (typeof forcedValue === 'boolean') this.isExpanded = forcedValue;
                 this.isExpanded = !this.isExpanded;
-                console.log('is expanded is', this.isExpanded);
+            },
+            toggleOffExpanded() {
+                this.isExpanded = false;
             },
         },
+        mixins: [clickaway],
     };
 </script>
 
@@ -141,11 +147,11 @@
         }
     }
     .hover-grow {
-        transition: all 0.15s ease-in-out;
-    }
-    .hover-grow:hover {
-        transform: scale(1.1);
-    }
+            transition: all 0.15s ease-in-out;
+        }
+        .hover-grow:hover {
+            transform: scale(1.1);
+        }
     .vertical-center {
         transform: translateY(-50%);
         top: 50%;
