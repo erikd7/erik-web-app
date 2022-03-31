@@ -1,16 +1,17 @@
 <template>
     <div>
-        <div class="menu">
+        <div class="menu" @click="toggleExpanded">
             <div
                 v-for="section in sections"
                 :key="section.path"
                 class="menu-item-spacer"
+                :class="{ 'sort-item-top': isCurrent(section.path) }"
             >
                 <router-link :to="section.path">
                     <div
                         class="menu-item hover-grow"
                         :class="{
-                            'menu-item-selected': section.path === current,
+                            'menu-item-selected': isCurrent(section.path),
                         }"
                     >
                         {{ section.name }}
@@ -35,20 +36,31 @@
                 type: String,
                 default: '/',
             },
+            toggleExpanded: {
+                type: Function,
+                default: () => {},
+            },
+        },
+        methods: {
+            isCurrent(path) {
+                return path === this.current;
+            },
         },
     };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
     .menu {
         display: flex;
         flex-flow: row;
         justify-content: center;
+        overflow-x: scroll;
+        overflow-y: hidden;
     }
     .menu-item-spacer {
         margin-left: 10px;
         margin-right: 10px;
+        width: fit-content;
     }
     .menu-item {
         color: black;
@@ -64,5 +76,23 @@
         color: white !important;
         background-color: #60789e;
         cursor: pointer;
+    }
+    @media only screen and (max-width: 400px) {
+        .menu-pane {
+            transition: all 0.5s;
+        }
+        .menu-pane-expanded {
+            max-height: 300px !important;
+        }
+        .menu {
+            flex-flow: column;
+            align-items: center;
+        }
+        .menu-item-spacer {
+            width: fit-content;
+        }
+        .sort-item-top {
+            order: -1 !important;
+        }
     }
 </style>
