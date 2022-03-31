@@ -36,7 +36,8 @@
             >
                 <div class="text-left text-4xl ">Full stack engineering&nbsp;</div>
                 <div class="text-center text-2xl"
-                    >with a strong focus on end-to-end user experience</div
+                    >with focuses on process improvement and end-to-end user
+                    experience</div
                 >
             </div>
         </div>
