@@ -1,5 +1,5 @@
 <template>
-    <div class="card" :class="{ grow: hoverGrow }">
+    <div class="card" :class="{ 'hover-grow': hoverGrow }" style="--scale: 1.01">
         <div v-if="header" :class="`card-header ${headerClass}`">
             {{ header }}
             <div v-if="subHeader" class="card-subheader">
@@ -47,10 +47,6 @@
         background-color: #c3cfe9;
         text-align: center;
         transition: all 0.15s ease-in-out;
-    }
-    .grow:hover {
-        transform: scale(1.01);
-        filter: drop-shadow(2px 4px 6px #425677);
     }
     .card-title {
         font-weight: bold;

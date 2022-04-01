@@ -73,10 +73,9 @@
     .menu-pane-holder {
         width: 100%;
         border-bottom: 2px solid #60789e;
-
+        overflow-y: hidden;
+        overflow-x: hidden;
         max-height: 45px;
-
-        overflow-y: auto;
         position: absolute;
     }
     .menu-pane {
@@ -125,33 +124,18 @@
         transform: translate(-50%, -50%);
     }
 
-    @media only screen and (min-device-width: 480px) {
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: unset;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #888;
-            border-radius: 5px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
+    @media only screen and (min-width: 650px) {
+        :root {
+            --scale: 1.1;
         }
         .hover-grow {
-            transition: none;
-        }
-        .hover-grow:hover {
-            transform: scale(1);
-        }
-    }
-    .hover-grow {
             transition: all 0.15s ease-in-out;
         }
         .hover-grow:hover {
-            transform: scale(1.1);
+            transform: scale(var(--scale));
+            filter: drop-shadow(2px 4px 6px #425677);
         }
+    }
     .vertical-center {
         transform: translateY(-50%);
         top: 50%;

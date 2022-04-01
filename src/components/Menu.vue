@@ -13,6 +13,7 @@
                         :class="{
                             'menu-item-selected': isCurrent(section.path),
                         }"
+                        style="--scale: 1.01"
                     >
                         {{ section.name }}
                     </div>
@@ -54,7 +55,7 @@
         display: flex;
         flex-flow: row;
         justify-content: center;
-        overflow-x: scroll;
+        overflow-x: hidden;
         overflow-y: hidden;
     }
     .menu-item-spacer {
