@@ -25,6 +25,7 @@
     import Menu from './components/Menu.vue';
     import { routes } from './router/index';
     import { mixin as clickaway } from 'vue-clickaway';
+    import * as api from './util/apis';
 
     export default {
         name: 'App',
@@ -54,6 +55,13 @@
             },
         },
         mixins: [clickaway],
+        created() {
+            api.wakeUp.get().then(response => {
+                if (!response.ok) {
+                    console.log(`Couldn't wake up the Heroku API server.`);
+                }
+            });
+        },
     };
 </script>
 
