@@ -147,6 +147,7 @@
     import LoadingOrError from '../SharedComponents/LoadingOrError';
     import TagArray from '../SharedComponents/TagArray.vue';
     import * as api from '../util/apis';
+    import * as localStorageHelpers from '../util/localStorage';
 
     export default {
         components: { CardTile, LoadingOrError, TagArray },
@@ -165,23 +166,34 @@
         },
         created() {
             this.loadingMessage = 'Loading resume info';
-            api.resumeInfo
-                .get()
-                .then(response => {
-                    if (response.ok) {
-                        this.resumeInfo = response.data;
-                    } else {
-                        this.errorMessage = response.message;
-                    }
-                })
-                .catch(error => {
-                    this.errorMessage = `Failed to retrieve resume info with: ${JSON.stringify(
-                        error.message
-                    )}`;
-                })
-                .finally(() => {
-                    this.loadingMessage = null;
-                });
+            //Cache values
+            const currentLocalValue = localStorageHelpers.get('resume');
+            if (currentLocalValue) {
+                this.resumeInfo = currentLocalValue;
+                this.loadingMessage = null;
+            } else {
+                api.resumeInfo
+                    .get()
+                    .then(response => {
+                        if (response.ok) {
+                            this.resumeInfo = response.data;
+                            localStorageHelpers.set('resume', response.data, {
+                                expirationValue: 5,
+                                expirationUnits: 'm',
+                            });
+                        } else {
+                            this.errorMessage = response.message;
+                        }
+                    })
+                    .catch(error => {
+                        this.errorMessage = `Failed to retrieve resume info with: ${JSON.stringify(
+                            error.message
+                        )}`;
+                    })
+                    .finally(() => {
+                        this.loadingMessage = null;
+                    });
+            }
         },
     };
 </script>
