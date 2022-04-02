@@ -9,7 +9,7 @@
             >
                 <router-link :to="section.path">
                     <div
-                        class="menu-item hover-grow"
+                        class="menu-item"
                         :class="{
                             'menu-item-selected': isCurrent(section.path),
                         }"
