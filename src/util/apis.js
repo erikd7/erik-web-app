@@ -1,19 +1,14 @@
-/**
- * @description      :
- * @author           : ebdie
- * @group            :
- * @created          : 09/10/2021 - 19:13:16
- *
- * MODIFICATION LOG
- * - Version         : 1.0.0
- * - Date            : 09/10/2021
- * - Author          : ebdie
- * - Modification    :
- **/
 import axios from "axios";
 
 //Endpoints for this Project
 const erikWebAppServerBaseUrl = "https://erik-web-app-api.herokuapp.com";
+
+export const wakeUp = {
+  get: async () => {
+    const response = axiosGet(erikWebAppServerBaseUrl + "/wake-up");
+    return response;
+  },
+};
 
 export const resumeInfo = {
   get: async () => {
