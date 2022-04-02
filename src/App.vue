@@ -130,10 +130,17 @@
         }
         .hover-grow {
             transition: all 0.15s ease-in-out;
+            transform-origin: 50% 50%;
+            transform-box: fill-box;
+            -webkit-font-smoothing: subpixel-antialiased;
+            will-change: font-size;
         }
         .hover-grow:hover {
             transform: scale(var(--scale));
-            filter: drop-shadow(2px 4px 6px #425677);
+            filter: drop-shadow(2px 2px 2px #425677);
+        }
+        .no-grow {
+            transform: scale(1) !important;
         }
     }
     .vertical-center {
