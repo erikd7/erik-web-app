@@ -2,19 +2,16 @@
     <div>
         <div class="flex flex-row justify-center flex-nowrap mobile-one-col">
             <CardTile header="About this App" headerClass="text-3xl">
-                I made this as a personal project to continue learning, to house existing
-                and future projects, and to have fun coding!
+                I made this as a personal project to continue learning, house existing and
+                future projects, and enjoy hobby coding!
                 <CardTile header="Resume" :hoverGrow="false">
                     My web resume
                 </CardTile>
                 <CardTile header="Chess" :hoverGrow="false">
-                    A player-vs-player chess application
+                    A player-vs-player chess application (in progress)
                 </CardTile>
                 <CardTile header="Cribbage" :hoverGrow="false">
-                    A points counter for the game of Cribbage
-                </CardTile>
-                <CardTile header="About" :hoverGrow="false">
-                    What you see is what you get
+                    A points counter for the game of Cribbage (really in progress)
                 </CardTile>
             </CardTile>
             <CardTile header="About the Tech Stack" headerClass="text-3xl">
@@ -26,18 +23,12 @@
                         <li>Axios.js API Framework</li>
                     </ul>
                 </CardTile>
-                <CardTile header="Back End - JS" :hoverGrow="false">
-                    <ul class="list-disc list-inside text-left">
-                        <li>Node.js Framework</li>
-                        <li>npm Package Manager</li>
-                    </ul>
-                </CardTile>
                 <CardTile header="Back End - Python" :hoverGrow="false">
                     <ul class="list-disc list-inside text-left">
                         <li>Python API Server</li>
                         <li>Pip Package Management</li>
                         <li>Flask API Framework</li>
-                        <li>Waitress WSGI Server Framework</li>
+                        <li>Gunicorn WSGI Server Framework</li>
                         <li>Postman for testing</li>
                     </ul>
                 </CardTile>
@@ -55,7 +46,7 @@
                             Python Back End
                         </li>
                         <li style="margin-left:4em">
-                            Auto deploy Docker container to Heroku via GitHub Actions
+                            Auto deploy to Heroku via GitHub Actions
                         </li>
                     </ul>
                 </CardTile>

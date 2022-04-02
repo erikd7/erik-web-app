@@ -54,4 +54,10 @@ const router = new VueRouter({
   routes,
 });
 
+router.afterEach((to) => {
+    Vue.nextTick(() => {
+        document.title = `${document.title.split(' | ')[0]} | ${to.name}`;
+    });
+});
+
 export default router;

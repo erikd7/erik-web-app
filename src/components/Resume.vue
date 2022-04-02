@@ -12,10 +12,7 @@
                 <CardTile class="flex-grow-0-imp">
                     <div class="flex-container flex justify-center">
                         <div>
-                            <img
-                                src="../data/coverPhoto.jpeg"
-                                class="image-display"
-                            />
+                            <img src="../data/coverPhoto.jpeg" class="image-display" />
                         </div>
                     </div>
                 </CardTile>
@@ -62,7 +59,7 @@
                 <!--Education-->
                 <span
                     v-for="(education, index) in resumeInfo.educationList"
-                    :key="index"
+                    :key="`edu-${index}`"
                 >
                     <CardTile>
                         <div class="card-header">
@@ -89,7 +86,7 @@
                             v-for="(focus, index) in education.majors.concat(
                                 education.minors
                             )"
-                            :key="index"
+                            :key="`focus-${index}`"
                         >
                             <div>
                                 {{ focus }}
@@ -100,12 +97,10 @@
                 <!--Experience-->
                 <span
                     v-for="(experience, index) in resumeInfo.experienceList"
-                    :key="index"
+                    :key="`exp-${index}`"
                 >
                     <CardTile
-                        :header="
-                            `${experience.title}, ${experience.organization}`
-                        "
+                        :header="`${experience.title}, ${experience.organization}`"
                         :subHeader="
                             `${experience.location} | ${
                                 experience.start
