@@ -10,6 +10,11 @@ The Vue app auto-deploys to Vercel on pushes to `main`.
 
 Domain: [edietrich.com](https://www.edietrich.com/)
 
+# Running locally
+
+You'll need the following environment variables set in a .env file in the root of the project:
+ * VUE_APP_ERIK_WEB_APP_API_HOST - the host URL of the API, local or external
+
 ## Project setup
 
 ```

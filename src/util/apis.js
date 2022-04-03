@@ -1,7 +1,7 @@
 import axios from "axios";
 
 //Endpoints for this Project
-const erikWebAppServerBaseUrl = "https://erik-web-app-api.herokuapp.com";
+const erikWebAppServerBaseUrl = process.env.VUE_APP_ERIK_WEB_APP_API_HOST;
 
 export const wakeUp = {
   get: async () => {
