@@ -12,6 +12,7 @@
   "dependencies": {
     "autoprefixer": "^9.8.6",
     "axios": "^0.22.0",
+    "cardsJS": "^1.1.1",
     "core-js": "^3.6.5",
     "cors": "^2.8.5",
     "dayjs": "^1.11.0",
@@ -31,7 +32,6 @@
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
     "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "babel-eslint": "^10.1.0",
