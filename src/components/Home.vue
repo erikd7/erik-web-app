@@ -43,16 +43,20 @@
         <div> </div>
         <div class="flex flex-row justify-center flex-nowrap mobile-one-col">
             <CardTile header="Full Stack Engineer" headerClass="text-3xl">
-                Front and back end experience
+                <template v-slot:body>Front and back end experience</template>
             </CardTile>
             <CardTile header="Product Designer" headerClass="text-3xl">
-                Creating solutions for complex business needs
+                <template v-slot:body
+                    >Creating solutions for complex business needs</template
+                >
             </CardTile>
             <CardTile header="Scrum Master" headerClass="text-3xl">
-                Embedded Scrum Master on an Agile team
+                <template v-slot:body>Embedded Scrum Master on an Agile team</template>
             </CardTile>
             <CardTile header="Project Manager" headerClass="text-3xl">
-                Over 2 years project management experience
+                <template v-slot:body
+                    >Over 2 years project management experience</template
+                >
             </CardTile>
         </div>
     </div>
