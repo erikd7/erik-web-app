@@ -1,5 +1,5 @@
 <template>
-  <div class="card" :class="{ 'hover-grow': hoverGrow }" style="--scale: 1.01">
+  <div class="card-container" :class="{ 'hover-grow': hoverGrow }" style="--scale: 1.01">
     <div v-if="header" :class="`card-header ${headerClass}`">
       {{ header }}
       <div v-if="subHeader" class="card-subheader">
@@ -43,7 +43,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-.card {
+.card-container {
   padding: 5px;
   margin: 5px;
   border-radius: 10px;

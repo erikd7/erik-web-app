@@ -1,164 +1,163 @@
 <template>
-    <div id="app">
-        <div class="menu-pane-holder" />
-        <div
-            class="menu-pane"
-            :class="{
-                'menu-pane-expanded': isExpanded,
-            }"
-            @Click="toggleExpanded"
-            v-on-clickaway="toggleOffExpanded"
-        >
-            <Menu
-                :sections="routes"
-                :current="currentRoute"
-                :toggleExpanded="toggleExpanded"
-            />
-        </div>
-        <div class="mainPane">
-            <router-view />
-        </div>
+  <div id="app">
+    <div class="menu-pane-holder" />
+    <div
+      class="menu-pane"
+      :class="{
+        'menu-pane-expanded': isExpanded,
+      }"
+      @Click="toggleExpanded"
+      v-on-clickaway="toggleOffExpanded"
+    >
+      <Menu :sections="routes" :current="currentRoute" :toggleExpanded="toggleExpanded" />
     </div>
+    <div class="mainPane">
+      <router-view />
+    </div>
+  </div>
 </template>
 
 <script>
-    import Menu from './components/Menu.vue';
-    import { routes } from './router/index';
-    import { mixin as clickaway } from 'vue-clickaway';
-    import * as api from './util/apis';
+import Menu from './components/Menu.vue';
+import { routes } from './router/index';
+import { mixin as clickaway } from 'vue-clickaway';
+import * as api from './util/apis';
 
-    export default {
-        name: 'App',
-        components: {
-            Menu,
-        },
-        data() {
-            return {
-                isExpanded: false,
-            };
-        },
-        computed: {
-            routes() {
-                return routes;
-            },
-            currentRoute() {
-                return this.$route.path;
-            },
-        },
-        methods: {
-            toggleExpanded(forcedValue) {
-                if (typeof forcedValue === 'boolean') this.isExpanded = forcedValue;
-                this.isExpanded = !this.isExpanded;
-            },
-            toggleOffExpanded() {
-                this.isExpanded = false;
-            },
-        },
-        mixins: [clickaway],
-        created() {
-            api.wakeUp.get().then(response => {
-                if (!response.ok) {
-                    console.log(`Couldn't wake up the Heroku API server.`);
-                }
-            });
-        },
+export default {
+  name: 'App',
+  components: {
+    Menu,
+  },
+  data() {
+    return {
+      isExpanded: false,
     };
+  },
+  computed: {
+    routes() {
+      return routes;
+    },
+    currentRoute() {
+      return this.$route.path;
+    },
+  },
+  methods: {
+    toggleExpanded(forcedValue) {
+      if (typeof forcedValue === 'boolean') this.isExpanded = forcedValue;
+      this.isExpanded = !this.isExpanded;
+    },
+    toggleOffExpanded() {
+      this.isExpanded = false;
+    },
+  },
+  mixins: [clickaway],
+  created() {
+    api.wakeUp.get().then(response => {
+      if (!response.ok) {
+        console.log(`Couldn't wake up the Heroku API server.`);
+      }
+    });
+  },
+};
 </script>
 
 <style>
-    #app {
-        font-family: Avenir, Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: left;
-        color: black;
-        display: flex;
-        flex-flow: wrap;
-        height: 100vh;
-        overflow-y: hidden;
-    }
-    .menu-pane,
-    .menu-pane-holder {
-        width: 100%;
-        border-bottom: 2px solid #60789e;
-        overflow-y: hidden;
-        overflow-x: hidden;
-        max-height: 45px;
-        position: absolute;
-    }
-    .menu-pane {
-        box-shadow: 0px 0px 5px grey;
-        padding: 5px;
-        z-index: 5;
-        height: min-content;
-        background-color: white;
-    }
-    .menu-pane-holder {
-        height: inherit;
-        position: relative;
-        display: block;
-    }
-    .mainPane {
-        height: calc(100vh - 45px);
-        overflow-y: auto;
-        width: 100%;
-        padding: 5px;
-    }
-    .mainPane-container {
-        padding: 5px;
-    }
-    .button {
-        color: white;
-        background-color: #60789e;
-        border-radius: 8px;
-        padding: 3px;
-        border: 1px solid #60789e;
-    }
-    .button:hover {
-        color: white;
-        background-color: #425677;
-        cursor: pointer;
-    }
-    .link {
-        color: blue;
-    }
-    .link:hover {
-        text-decoration: underline;
-    }
-    .middle {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: left;
+  color: black;
+  display: flex;
+  flex-flow: wrap;
+  height: 100vh;
+  overflow-y: hidden;
+}
+.menu-pane,
+.menu-pane-holder {
+  width: 100%;
+  border-bottom: 2px solid #60789e;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  max-height: 45px;
+  position: absolute;
+}
+.menu-pane {
+  box-shadow: 0px 0px 5px grey;
+  padding: 5px;
+  z-index: 5;
+  height: min-content;
+  background-color: white;
+}
+.menu-pane-holder {
+  height: inherit;
+  position: relative;
+  display: block;
+}
+.mainPane {
+  height: calc(100vh - 45px);
+  overflow-y: auto;
+  width: 100%;
+  padding: 5px;
+}
+.mainPane-container {
+  padding: 5px;
+}
+.button {
+  color: white;
+  background-color: #60789e;
+  border-radius: 8px;
+  padding: 3px;
+  border: 1px solid #60789e;
+}
+.button:hover {
+  color: white;
+  background-color: #425677;
+  cursor: pointer;
+}
+.link {
+  color: blue;
+}
+.link:hover {
+  text-decoration: underline;
+}
+.middle {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-    @media only screen and (min-width: 650px) {
-        :root {
-            --scale: 1.1;
-        }
-        .hover-grow {
-            transition: all 0.15s ease-in-out;
-            transform-origin: 50% 50%;
-            transform-box: fill-box;
-            -webkit-font-smoothing: subpixel-antialiased;
-            will-change: font-size;
-        }
-        .hover-grow:hover {
-            transform: scale(var(--scale));
-            filter: drop-shadow(2px 2px 2px #425677);
-        }
-        .no-grow {
-            transform: scale(1) !important;
-        }
-    }
-    .vertical-center {
-        transform: translateY(-50%);
-        top: 50%;
-        position: relative;
-    }
-    .image-display {
-        border-radius: 10px;
-        object-fit: cover;
-        width: 300px;
-    }
+@media only screen and (min-width: 650px) {
+  :root {
+    --scale: 1.1;
+  }
+  .hover-grow {
+    transition: all 0.15s ease-in-out;
+    transform-origin: 50% 50%;
+    transform-box: fill-box;
+    -webkit-font-smoothing: subpixel-antialiased;
+    will-change: font-size;
+  }
+  .hover-grow:hover {
+    transform: scale(var(--scale));
+    filter: drop-shadow(2px 2px 2px #425677);
+  }
+  .no-grow {
+    transform: scale(1) !important;
+  }
+}
+.transition-smooth {
+  transition: all var(--duration, 0.2) ease-in-out;
+}
+.vertical-center {
+  transform: translateY(-50%);
+  top: 50%;
+  position: relative;
+}
+.image-display {
+  border-radius: 10px;
+  object-fit: cover;
+  width: 300px;
+}
 </style>

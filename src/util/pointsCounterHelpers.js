@@ -1,15 +1,3 @@
-/**
- * @description      :
- * @author           : ebdie
- * @group            :
- * @created          : 06/09/2021 - 11:38:41
- *
- * MODIFICATION LOG
- * - Version         : 1.0.0
- * - Date            : 06/09/2021
- * - Author          : ebdie
- * - Modification    :
- **/
 import { cloneDeep } from "lodash";
 
 const orderedFaces = [
@@ -49,7 +37,9 @@ const facesToValues = {
   K: 10,
 };
 
-const createCardHash = (cards) => {
+const getFaceForCard = card => card.slice(0, card.length - 1)
+
+const getCardHash = (cards) => {
   //Create hash of card -> index in cards array
   let cardsMap = {};
   cards.forEach((card, index) => {
@@ -58,6 +48,59 @@ const createCardHash = (cards) => {
   });
   return cardsMap;
 };
+
+const getRunArrays = (cardsMap, cards) => {
+  const minRunLength = 3;
+  let currentRun = [];
+  let set = {};
+  let starterCard = null;
+  //Loop through all faces and check for next in sequence
+  helpers.orderedFaces.concat(["z"]).forEach((face) => {
+    //add dummy to last card to count runs ending with lastcard. refactor later
+    const cardsInHand = cardsMap[face];
+    if (!cardsInHand?.length) {
+      if (currentRun.length >= minRunLength) {
+        set[starterCard] = currentRun
+      }
+      starterCard = null;
+      currentRun = [];
+      return;
+    } 
+      if (!starterCard) {
+        starterCard = face; 
+      }
+      currentRun.push(cardsInHand.map(cardIndex => cards[cardIndex]))
+    } 
+  );
+
+  return set;
+}
+
+const getRunCombos = (runArrays) => {
+  let cards = [];
+  let points = 0;
+  const combosEnd = runArrays.length - 1;
+  const getCombos = (array, i) => {
+      for (let faceIndex = 0; faceIndex < runArrays[i].length; faceIndex++) {
+          let arrayClone = cloneDeep(array) // clone array
+
+          //Add current card to current array
+          arrayClone.push(runArrays[i][faceIndex]);
+
+          //Cycle again if the array isn't full Length
+          if (i < combosEnd) {
+              getCombos(arrayClone, i + 1);
+          }
+          //Track the array if it's the end of this array
+          else {
+            cards.push(arrayClone);
+              points += arrayClone.length;
+          }
+      }
+  }
+  getCombos([], 0);
+  return { cards, points };
+}
 
 const getNumCombos = (array) => {
   const r = 2; //pairs of 2
@@ -75,50 +118,56 @@ const factorial = (number) => {
   return total;
 };
 
-const waysToSum = (numbers, sumTo, numbersSoFar = [], successfulNumbers = [], level = 0) => {
-  const locNumbers = cloneDeep(numbers);
-  const locNumbersSoFar = cloneDeep(numbersSoFar);
-  for (let index = 0; index < locNumbers.length; index++) {
-    const loopNumbersSoFar = cloneDeep(locNumbersSoFar)
-    const n = locNumbers[index]
+const waysToSum = (cards, sumTo, cardsSoFar = [], successfulCards = []) => {
+  const locCards = cloneDeep(cards);
+  const locCardsSoFar = cloneDeep(cardsSoFar);
+  for (let index = 0; index < locCards.length; index++) {
+    const loopCardsSoFar = cloneDeep(locCardsSoFar)
+    const current = locCards[index]
 
     //track the current traversal
-    loopNumbersSoFar.push(n)
+    loopCardsSoFar.push(current.card)
 
     //new value to sum to
-    const newSumTo = sumTo - n;
+    const newSumTo = sumTo - current.value;
 
     //if it adds to new value
-    if (newSumTo === 0) {      
-      successfulNumbers.push(loopNumbersSoFar);
-    } else if (newSumTo > 0 && locNumbers.length) {
-      //use recursion to evaluate next numbers
-      waysToSum(locNumbers.slice(index+1),newSumTo, loopNumbersSoFar, successfulNumbers, level + 1);
+    if (newSumTo === 0) {
+      successfulCards.push(loopCardsSoFar);
+    } else if (newSumTo > 0 && locCards.length) {
+      //use recursion to evaluate next cards
+      waysToSum(locCards.slice(index + 1),newSumTo, loopCardsSoFar, successfulCards);
     } 
   }
 
-  return successfulNumbers;
+  return successfulCards;
 }
 
 export const helpers = {
   orderedFaces,
+  getFaceForCard,
   isLastCard,
   facesToValues,
-  createCardHash,
+  getCardHash,
+  getRunArrays,
   getNumCombos,
   factorial,
   waysToSum
 };
 
 export class CardResult {
-  constructor(faces, pairs, runs, sums) {
-    this.faces = faces;
+  constructor(cards, pairs, runs, sums) {
+    this.cards = cards;
     this.pairs = pairs;
     this.runs = runs;
     this.sums = sums;
   }
 
-  createCardHash() {
+  getCardFacesWithoutSuit() {
+    this.faces = this.cards.reduce((facesWithoutSuit, face) => facesWithoutSuit.concat(getFaceForCard(face)),[])
+  }
+
+  getCardHash() {
     //Create hash of card -> index in cards array
     let cardsMap = {};
     this.faces.forEach((card, index) => {
@@ -128,73 +177,35 @@ export class CardResult {
     this.cardsMap = cardsMap;
   }
 
-  getCardValues() {
-    this.values = this.faces.map(f => facesToValues[f])
-  }
-
-  static build(cardFaces) {
+  static build(cards) {
     const blankInsideObject = { cards: [], points: 0 };
     const created = new CardResult(
-      cardFaces,
+      cards,
       cloneDeep(blankInsideObject),
       cloneDeep(blankInsideObject),
       cloneDeep(blankInsideObject)
     );
 
-    created.createCardHash();
-    created.getCardValues();
+    created.getCardFacesWithoutSuit();
+    created.getCardHash();
 
     return created;
   }
 
   getSumPoints() {
-    const sums = waysToSum(this.values, 15);
+    const sums = waysToSum(this.cards.map(c => ({card: c, value: facesToValues[getFaceForCard(c)] })), 15);
     this.sums.points += 2 * sums.length;
     this.sums.cards = sums;
   }
 
   getRunPoints() {
-    const minRunLength = 3;
-    let runs = {};
-    let dups = {};
-    let starterCard = null;
-    //Loop through all faces and check for next in sequence
-    helpers.orderedFaces.concat(["z"]).forEach((face) => {
-      //add dummy to last card to count runs ending with lastcard. refactor later
-      const cardsInHand = this.cardsMap[face];
-  
-      if (cardsInHand) {
-        if (starterCard === null) {
-          //If it's first in a sequence
-          starterCard = face;
-          runs[face] = [face];
-        } else {
-          //If part of existing sequence
-          runs[starterCard].push(face);
-        }
-        if (cardsInHand.length > 1) {
-          dups[face] = cardsInHand.length - 1;
-        }
-      } 
-      //If end of run, document cards and points
-      else {
-        if (starterCard && runs[starterCard].length >= minRunLength) {
-          this.runs.cards.push(runs[starterCard]);
-          //Include duplicate runs
-          this.runs.points += runs[starterCard].length;
-          runs[starterCard].forEach(c => {
-            const runDups = dups[c];
-            for (let i = 0; i < runDups; i++) {
-              this.runs.cards.push(runs[starterCard]);
-              this.runs.points += runs[starterCard].length;
-            }
-          })
-          
-          
-        }
-        starterCard = null;
-      }
-    });
+    const set = getRunArrays(this.cardsMap, this.cards);
+
+    Object.keys(set).forEach(starterCard => {
+      const runs = getRunCombos(set[starterCard])
+      this.runs.cards = this.runs.cards.concat(runs.cards);
+      this.runs.points += runs.points;
+    })
   }
 
   getPairPoints() {
@@ -206,9 +217,9 @@ export class CardResult {
     Object.keys(this.cardsMap).forEach((key) => {
       const numCards = this.cardsMap[key].length;
       if (numCards >= 2) {
-        let toPush = {};
-        toPush[key] = numCards;
-        pairCards.push(toPush);
+        //Get actual faces
+        const cards = this.cardsMap[key].reduce((cards,index) => cards.concat(this.cards[index]), []);
+        pairCards.push(cards);
       }
     });
     this.pairs.points += 2 * numCombos;

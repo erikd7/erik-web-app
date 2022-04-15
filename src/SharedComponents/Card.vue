@@ -1,5 +1,5 @@
 <template>
-  <CardTile style="min-width: 200px;">
+  <CardTile style="min-width: 200px;" :hoverGrow="false">
     <template v-slot:header>
       <div class="card-title flex flex-column justify-between">
         <div>{{ cardTitle }}</div>
