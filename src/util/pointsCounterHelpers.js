@@ -10,11 +10,40 @@ const orderedFaces = [
   "7",
   "8",
   "9",
-  "10",
+  "T",
   "J",
   "Q",
   "K",
 ];
+
+const suits = ['S', 'H', 'D', 'C'];
+
+const formatInput = input => (input || "").toString().toUpperCase().split(',');
+
+const cardRegexString = `[${orderedFaces.join('|')}][${suits.join('|')}]`
+
+const cardRegEx = new RegExp(cardRegexString)
+
+const validateHand = hand => {
+  const handArray = formatInput(hand);
+
+  //Right length
+  if (handArray.length !== 5) return { ok: false, message: 'Hand must have 5 cards.'}
+
+  //Cards formatted correctly
+  const problemCards = handArray.filter(card => !cardRegEx.test(card));
+  if (problemCards.length) 
+    return { ok: false, message: `The following card${problemCards.length > 1 ? "s are" : " is"} invalid: ${problemCards.join()}`}
+
+  //No duplicate cards
+  const cardMap = handArray.reduce((map, card) => ({...map, [card]: (map[card] || 0) + 1}), {})
+  if (Object.values(cardMap).some(count => count > 1))
+    return { ok: false, message: 'All cards must be unique.'}
+
+  //Otherwise ok
+  return { ok: true, message: null}
+
+}
 
 const lastCard = orderedFaces[orderedFaces.length - 1];
 const isLastCard = (face) => {
@@ -31,7 +60,7 @@ const facesToValues = {
   7: 7,
   8: 8,
   9: 9,
-  10: 10,
+  T: 10,
   J: 10,
   Q: 10,
   K: 10,
@@ -145,6 +174,9 @@ const waysToSum = (cards, sumTo, cardsSoFar = [], successfulCards = []) => {
 
 export const helpers = {
   orderedFaces,
+  formatInput,
+  cardRegEx,
+  validateHand,
   getFaceForCard,
   isLastCard,
   facesToValues,

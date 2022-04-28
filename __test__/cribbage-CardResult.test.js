@@ -1,14 +1,48 @@
 import { helpers, CardResult } from '../src/util/pointsCounterHelpers';
 
 describe('should correctly total cribbage points', () => {
+    it('should correctly validate single card regex', () => {
+        expect(helpers.cardRegEx.test('AS')).toBe(true)
+        expect(helpers.cardRegEx.test('6H')).toBe(true)
+        expect(helpers.cardRegEx.test('KD')).toBe(true)
+        expect(helpers.cardRegEx.test('QC')).toBe(true)
+        expect(helpers.cardRegEx.test('9S')).toBe(true)
+
+        expect(helpers.cardRegEx.test('AA')).toBe(false)
+        expect(helpers.cardRegEx.test('1H')).toBe(false)
+        expect(helpers.cardRegEx.test('HS')).toBe(false)
+        expect(helpers.cardRegEx.test('junk')).toBe(false)
+        expect(helpers.cardRegEx.test('')).toBe(false)
+    })
+
+    it('should validate a hand - valid format', () => {
+        expect(helpers.validateHand('aS,TC,4D,2H,KS')).toMatchObject({ok: true})
+    })
+
+    it('should validate a hand - too many cards', () => {
+        expect(helpers.validateHand('AS,TC,4D,2H,KS,TS')).toMatchObject({ ok: false, message: 'Hand must have 5 cards.' })
+    })
+    
+    it('should validate a hand - invalid format', () => {
+        expect(helpers.validateHand('AS,TC,1D,2H,KS')).toMatchObject({ok: false, message: 'The following card is invalid: 1D'})
+    })
+
+    it('should validate a hand - multiple invalid formats', () => {
+        expect(helpers.validateHand('AM,TC,1D,2H,IS')).toMatchObject({ok: false, message: 'The following cards are invalid: AM,1D,IS'})
+    })
+
+    it('should validate a hand - no duplicates', () => {
+        expect(helpers.validateHand('AS,8H,KD,AS,KS')).toMatchObject({ok: false, message: 'All cards must be unique.'})
+    })
+
     it('should correctly get face for card', () => {
         const face = helpers.getFaceForCard('QH');
         expect(face).toBe('Q')
     })
 
-    it('should correctly get face for card - 10', () => {
-        const face = helpers.getFaceForCard('10D');
-        expect(face).toBe('10')
+    it('should correctly get face for card - T', () => {
+        const face = helpers.getFaceForCard('TD');
+        expect(face).toBe('T')
     })
 
     it('should correctly create a card face map', () => {
@@ -24,9 +58,9 @@ describe('should correctly total cribbage points', () => {
     })
 
     it('should get run cards and points - one run', () => {
-        const cardsResult = CardResult.build(['AS', '9D', '2C', 'JC', '10C']);
+        const cardsResult = CardResult.build(['AS', '9D', '2C', 'JC', 'TC']);
         cardsResult.getRunPoints();
-        expect(cardsResult.runs.cards).toMatchObject([['9D', '10C', 'JC']])
+        expect(cardsResult.runs.cards).toMatchObject([['9D', 'TC', 'JC']])
         expect(cardsResult.runs.points).toBe(3)
     })
 
@@ -104,9 +138,9 @@ describe('should correctly total cribbage points', () => {
     })
 
     it('should get sum cards and points - three sums', () => {
-        const cardsResult = CardResult.build(['6D', '10S', '6S', '5D', '9C']);
+        const cardsResult = CardResult.build(['6D', 'TS', '6S', '5D', '9C']);
         cardsResult.getSumPoints();
-        expect(cardsResult.sums.cards).toMatchObject([['6D','9C'],['10S','5D'],['6S','9C']])
+        expect(cardsResult.sums.cards).toMatchObject([['6D','9C'],['TS','5D'],['6S','9C']])
         expect(cardsResult.sums.points).toBe(6)
     })
 
