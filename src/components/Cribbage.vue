@@ -1,7 +1,12 @@
 <template>
   <div class="flex flex-col">
     <div class="p-b-10">
-      enter points placeholder
+      <input
+        v-model="handEntry"
+        placeholder="Enter hand"
+        @change="handleInput"
+        @keypress.enter="calculatePoints"
+      />
       <button class="button" @click="calculatePoints">
         Count Points
       </button>
@@ -37,7 +42,7 @@
 
 <script>
 import Card from '../SharedComponents/Card.vue';
-import { CardResult } from '../util/pointsCounterHelpers';
+import { CardResult, helpers } from '../util/pointsCounterHelpers';
 
 export default {
   components: { Card },
@@ -50,14 +55,23 @@ export default {
   data() {
     return {
       cardsResult: {},
+      handEntry: '',
+      isHandValid: { ok: false, message: 'Nothing entered.' },
     };
   },
   methods: {
     calculatePoints() {
-      this.cardsResult = CardResult.build(['5S', '10D', 'JH', 'QS', 'JC']);
-      this.cardsResult.calculatePoints();
+      if (this.isHandValid.ok) {
+        this.cardsResult = CardResult.build(this.handEntry);
+        this.cardsResult.calculatePoints();
+      }
+    },
+    handleInput() {
+      this.handEntry = helpers.formatInput(this.handEntry);
+      this.isHandValid = helpers.validateHand(this.handEntry);
     },
   },
+  computed: {},
 };
 </script>
 
