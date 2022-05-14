@@ -1,5 +1,8 @@
 <template>
-  <div class="card-container" :class="{ 'hover-grow': hoverGrow }" style="--scale: 1.01">
+  <div
+    :class="`card-container ${className} ${hoverGrow ? 'hover-grow' : ''}`"
+    style="--scale: 1.01"
+  >
     <div v-if="header" :class="`card-header ${headerClass}`">
       {{ header }}
       <div v-if="subHeader" class="card-subheader">
@@ -21,6 +24,10 @@ export default {
     return {};
   },
   props: {
+    className: {
+      type: String,
+      default: '',
+    },
     header: {
       type: String,
       default: '',

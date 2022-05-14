@@ -18,13 +18,13 @@
 </template>
 
 <script>
-import Menu from './components/Menu.vue';
-import { routes } from './router/index';
-import { mixin as clickaway } from 'vue-clickaway';
-import * as api from './util/apis';
+import Menu from "./components/Menu.vue";
+import { routes } from "./router/index";
+import { mixin as clickaway } from "vue-clickaway";
+import * as api from "./util/apis";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Menu,
   },
@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     toggleExpanded(forcedValue) {
-      if (typeof forcedValue === 'boolean') this.isExpanded = forcedValue;
+      if (typeof forcedValue === "boolean") this.isExpanded = forcedValue;
       this.isExpanded = !this.isExpanded;
     },
     toggleOffExpanded() {
@@ -52,7 +52,7 @@ export default {
   },
   mixins: [clickaway],
   created() {
-    api.wakeUp.get().then(response => {
+    api.wakeUp.get().then((response) => {
       if (!response.ok) {
         console.log(`Couldn't wake up the Heroku API server.`);
       }
@@ -159,5 +159,78 @@ export default {
   border-radius: 10px;
   object-fit: cover;
   width: 300px;
+}
+@media only screen and (max-width: 650px) {
+  .mobile-one-col {
+    flex-wrap: wrap;
+  }
+  .mobile-one-col > div {
+    flex-basis: 51% !important;
+    flex-shrink: 0 !important;
+    flex-grow: 1 !important;
+  }
+}
+/* Animations */
+.slide-in-from-left {
+  animation: slide-in-from-left;
+  animation-duration: 1s;
+  position: relative;
+}
+@keyframes slide-in-from-left {
+  0% {
+    left: -30vw;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+.fade-in {
+  animation: fade-in;
+  animation-duration: var(--duration, 2s);
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.slide-fade-left {
+  animation: slide-fade-left;
+  animation-duration: var(--duration, 1s);
+  position: relative;
+}
+@keyframes slide-fade-left {
+  0% {
+    left: -100px;
+    opacity: 0;
+  }
+
+  100% {
+    left: 0;
+    opacity: 1;
+  }
+}
+.slide-fade-right {
+  animation: slide-fade-right;
+  animation-duration: var(--duration, 1s);
+  position: relative;
+}
+@keyframes slide-fade-right {
+  0% {
+    right: -100px;
+    opacity: 0;
+  }
+
+  100% {
+    right: 0;
+    opacity: 1;
+  }
 }
 </style>
