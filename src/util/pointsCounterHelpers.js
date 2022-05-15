@@ -18,7 +18,16 @@ const orderedFaces = [
 
 const suits = ['S', 'H', 'D', 'C'];
 
-const formatInput = input => (input || "").toString().toUpperCase().split(',');
+const formatInput = input => {
+  if (!input?.length) return "";
+
+  return (input || "")
+  .toString()
+  .toUpperCase()
+  .replace(" ", ",")
+  .replace(new RegExp(`[^${orderedFaces.concat(suits).join('|')}|,|]`),"")
+  .split(',');
+}
 
 const cardRegexString = `[${orderedFaces.join('|')}][${suits.join('|')}]`
 
@@ -33,7 +42,7 @@ const validateHand = hand => {
   //Cards formatted correctly
   const problemCards = handArray.filter(card => !cardRegEx.test(card));
   if (problemCards.length) 
-    return { ok: false, message: `The following card${problemCards.length > 1 ? "s are" : " is"} invalid: ${problemCards.join()}`}
+    return { ok: false, message: `The following card${problemCards.length > 1 ? "s are" : " is"} invalid: ${problemCards.join() || '[blank card]'}`}
 
   //No duplicate cards
   const cardMap = handArray.reduce((map, card) => ({...map, [card]: (map[card] || 0) + 1}), {})

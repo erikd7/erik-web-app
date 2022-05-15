@@ -24,11 +24,11 @@ describe('should correctly total cribbage points', () => {
     })
     
     it('should validate a hand - invalid format', () => {
-        expect(helpers.validateHand('AS,TC,1D,2H,KS')).toMatchObject({ok: false, message: 'The following card is invalid: 1D'})
+        expect(helpers.validateHand('AS,TC,1D,2H,KS')).toMatchObject({ok: false, message: 'The following card is invalid: D'}) //The '1' will be cleaned as it's typed
     })
 
     it('should validate a hand - multiple invalid formats', () => {
-        expect(helpers.validateHand('AM,TC,1D,2H,IS')).toMatchObject({ok: false, message: 'The following cards are invalid: AM,1D,IS'})
+        expect(helpers.validateHand('AM,TC,1D,2H,IS')).toMatchObject({ok: false, message: 'The following cards are invalid: A,1D,IS'})
     })
 
     it('should validate a hand - no duplicates', () => {
