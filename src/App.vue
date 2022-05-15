@@ -171,6 +171,40 @@ export default {
   }
 }
 /* Animations */
+:nth-child(1) {
+  --nth-child: 1;
+}
+:nth-child(2) {
+  --nth-child: 2;
+}
+:nth-child(3) {
+  --nth-child: 3;
+}
+:nth-child(4) {
+  --nth-child: 4;
+}
+:nth-child(5) {
+  --nth-child: 5;
+}
+:nth-child(6) {
+  --nth-child: 6;
+}
+:nth-child(7) {
+  --nth-child: 7;
+}
+:nth-child(7) {
+  --nth-child: 7;
+}
+:nth-child(8) {
+  --nth-child: 8;
+}
+:nth-child(9) {
+  --nth-child: 9;
+}
+:nth-child(10) {
+  --nth-child: 10;
+}
+
 .slide-in-from-left {
   animation: slide-in-from-left;
   animation-duration: 1s;
@@ -185,15 +219,31 @@ export default {
   }
 }
 
+.slide-fade-up,
+.slide-fade-up-grandchild > div > div,
+.slide-fade-up-grandchild > div > span {
+  animation: slide-fade-up;
+  animation-duration: calc(var(--nth-child) * 0.25s);
+  position: relative;
+}
+@keyframes slide-fade-up {
+  0% {
+    bottom: -100px;
+    opacity: 0;
+  }
+
+  100% {
+    bottom: 0;
+    opacity: 1;
+  }
+}
+
 .fade-in {
   animation: fade-in;
   animation-duration: var(--duration, 2s);
 }
 @keyframes fade-in {
   0% {
-    opacity: 0;
-  }
-  50% {
     opacity: 0;
   }
   100% {

@@ -5,7 +5,7 @@
       :loadingMessage="loadingMessage"
       :errorMessage="errorMessage"
     />
-    <div v-else class="card-array">
+    <div v-else class="card-array slide-fade-up-grandchild">
       <!--New Column-->
       <div class="flex-grow flex-shrink-0">
         <!--Photo-->
@@ -142,11 +142,11 @@
 </template>
 
 <script>
-import CardTile from '../SharedComponents/CardTile';
-import LoadingOrError from '../SharedComponents/LoadingOrError';
-import TagArray from '../SharedComponents/TagArray.vue';
-import * as api from '../util/apis';
-import * as localStorageHelpers from '../util/localStorage';
+import CardTile from "../SharedComponents/CardTile";
+import LoadingOrError from "../SharedComponents/LoadingOrError";
+import TagArray from "../SharedComponents/TagArray.vue";
+import * as api from "../util/apis";
+import * as localStorageHelpers from "../util/localStorage";
 
 export default {
   components: { CardTile, LoadingOrError, TagArray },
@@ -159,32 +159,32 @@ export default {
   data() {
     return {
       resumeInfo: {},
-      loadingMessage: '',
-      errorMessage: '',
+      loadingMessage: "",
+      errorMessage: "",
     };
   },
   created() {
-    this.loadingMessage = 'Loading resume info';
+    this.loadingMessage = "Loading resume info";
     //Cache values
-    const currentLocalValue = localStorageHelpers.get('resume');
+    const currentLocalValue = localStorageHelpers.get("resume");
     if (currentLocalValue) {
       this.resumeInfo = currentLocalValue;
       this.loadingMessage = null;
     } else {
       api.resumeInfo
         .get()
-        .then(response => {
+        .then((response) => {
           if (response.ok) {
             this.resumeInfo = response.data;
-            localStorageHelpers.set('resume', response.data, {
+            localStorageHelpers.set("resume", response.data, {
               expirationValue: 5,
-              expirationUnits: 'm',
+              expirationUnits: "m",
             });
           } else {
             this.errorMessage = response.message;
           }
         })
-        .catch(error => {
+        .catch((error) => {
           this.errorMessage = `Failed to retrieve resume info with: ${JSON.stringify(
             error.message
           )}`;
