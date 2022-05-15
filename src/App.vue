@@ -115,6 +115,14 @@ export default {
   background-color: #425677;
   cursor: pointer;
 }
+.button:disabled {
+  color: white;
+  background-color: #bac3cd;
+  border-radius: 8px;
+  padding: 3px;
+  border: 1px solid #bac3cd;
+  cursor: default;
+}
 .link {
   color: blue;
 }
