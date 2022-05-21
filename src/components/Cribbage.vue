@@ -14,6 +14,7 @@
           @blur="
             () => {
               isHandEntryFocused = false;
+              isUsingSelector = false;
             }
           "
           @input="handleInput"
@@ -33,40 +34,45 @@
           Count Points
         </button>
       </div>
-      <!--Entry guide-->
-      <div
-        v-if="!handEntry && isHandEntryFocused && isHandValid?.message"
-        class="flex justify-center"
-      >
+      <span v-if="!isUsingSelector">
+        <!--Entry guide-->
         <div
-          class="w-fit p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
-          role="alert"
+          v-if="!handEntry && isHandEntryFocused && isHandValid?.message"
+          class="flex justify-center"
         >
-          <span class="font-medium">
-            Hands should have 5 comma-separated cards, which follow the format
-            &lt;face&gt;&lt;suit&gt;.
-          </span>
+          <div
+            class="w-fit p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
+            role="alert"
+          >
+            <span class="font-medium">
+              Hands should have 5 comma-separated cards, which follow the format
+              &lt;face&gt;&lt;suit&gt;.
+            </span>
+          </div>
         </div>
-      </div>
-      <!--Error message-->
-      <div
-        v-else-if="handEntry && !isHandEntryFocused && isHandValid?.message"
-        class="flex justify-center transition-smooth"
-      >
+        <!--Error message-->
         <div
-          class="w-fit p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
-          role="alert"
+          v-else-if="handEntry && !isHandEntryFocused && isHandValid?.message"
+          class="flex justify-center transition-smooth"
         >
-          <span class="font-medium">{{ validityMessage }}</span>
+          <div
+            class="w-fit p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
+            role="alert"
+          >
+            <span class="font-medium">{{ validityMessage }}</span>
+          </div>
         </div>
-      </div>
+      </span>
+    </div>
+    <div v-if="handEntry?.length < 5" class="flex justify-center p-2">
+      <CribbageInput :options="selectOptions" :selectFunction="selectCard" />
     </div>
     <div v-if="this.cardsResult.totalPoints">
       Total Points is {{ this.cardsResult.totalPoints }}
     </div>
     <div
       v-if="this.cardsResult.totalPoints"
-      class="flex flex-row justify-items-center justify-evenly flex-wrap"
+      class="flex flex-row justify-items-center justify-evenly flex-wrap mobile-one-col"
     >
       <Card
         cardTitle="Sums"
@@ -92,10 +98,11 @@
 
 <script>
 import Card from '../SharedComponents/Card.vue';
+import CribbageInput from '../SharedComponents/Cribbage/CribbageInput.vue';
 import { CardResult, helpers } from '../util/pointsCounterHelpers';
 
 export default {
-  components: { Card },
+  components: { Card, CribbageInput },
   props: {
     resume: {
       type: Object,
@@ -106,7 +113,9 @@ export default {
     return {
       cardsResult: {},
       handEntry: '',
+      selectedSuit: null,
       isHandEntryFocused: false,
+      isUsingSelector: true,
       isHandValid: { ok: false, message: 'Enter a hand to count points.' },
     };
   },
@@ -121,6 +130,19 @@ export default {
       this.handEntry = helpers.formatInput(this.handEntry);
       this.isHandValid = helpers.validateHand(this.handEntry);
     },
+    selectCard(newInput) {
+      if (this.selectedSuit) {
+        this.handEntry = this.handEntry.concat(newInput);
+        this.handleInput();
+        this.selectedSuit = null;
+      } else {
+        this.selectedSuit = newInput;
+      }
+      if (!this.isUsingSelector) this.isUsingSelector = true;
+      if (this.handEntry?.length === 5) {
+        this.calculatePoints();
+      }
+    },
   },
   computed: {
     validityMessage() {
@@ -129,13 +151,16 @@ export default {
         `The hand isn't valid. Make sure there are 5 comma-separated hands in the format <face><suit>. Use T for 10.`
       );
     },
+    selectOptions() {
+      if (!this.selectedSuit) {
+        return helpers.suits.map(suit => ({ value: suit }));
+      }
+
+      return helpers.orderedFaces.map(face => ({
+        value: face.concat(this.selectedSuit),
+        disabled: this.handEntry.includes(face.concat(this.selectedSuit)),
+      }));
+    },
   },
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.header {
-  font-weight: bold;
-}
-</style>

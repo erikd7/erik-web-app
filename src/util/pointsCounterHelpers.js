@@ -182,6 +182,7 @@ const waysToSum = (cards, sumTo, cardsSoFar = [], successfulCards = []) => {
 }
 
 export const helpers = {
+  suits,
   orderedFaces,
   formatInput,
   cardRegEx,
