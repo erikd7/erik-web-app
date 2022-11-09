@@ -44,7 +44,7 @@
         </div>
       </div>
     </div>
-    <div class="flex flex-row justify-center flex-nowrap mobile-one-col">
+    <div class="flex flex-row justify-center mobile-one-col">
       <CardTile
         className="slide-fade-right"
         style="--duration: .5s"
