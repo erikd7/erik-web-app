@@ -100,7 +100,7 @@
         >
           <CardTile
             :header="`${experience.title}, ${experience.organization}`"
-            :subHeader="
+            :subHeader="experience.startAndEnd ||
               `${experience.location} | ${experience.start} — ${experience.end ||
                 'present'}`
             "
