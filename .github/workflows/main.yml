@@ -5,7 +5,7 @@ name: Deploy Vue and Frontend Proxy
 on:
   push:
     branches:
-      - main
+      - never #Heroku no longer supports free dynos as of 11/28/22. Switched to Vercel integration
 
 jobs:
   build:
