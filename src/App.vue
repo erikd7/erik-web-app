@@ -54,7 +54,7 @@ export default {
   created() {
     api.wakeUp.get().then((response) => {
       if (!response.ok) {
-        console.log(`Couldn't wake up the Heroku API server.`);
+        console.log(`Couldn't wake up the Vercel API server.`);
       }
     });
   },
