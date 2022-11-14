@@ -15,7 +15,7 @@
           </CardTile>
           <CardTile header="Cribbage" :hoverGrow="false"
             ><template v-slot:body>
-              A points counter for the game of Cribbage (really in progress)</template
+              A points counter for the game of Cribbage</template
             >
           </CardTile>
         </template>
@@ -58,7 +58,10 @@
                   Python Back End
                 </li>
                 <li style="margin-left:4em">
-                  Auto deploy to Heroku via GitHub Actions
+                  Auto deploy to Vercel via GitHub Actions
+                </li>
+                <li style="margin-left:4em">
+                  Resume and Chess use the API. There is also a wakeup function to start the serverless pod, which is free tier and not the fastest.
                 </li>
               </ul></template
             >
