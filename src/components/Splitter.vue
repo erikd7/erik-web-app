@@ -138,12 +138,12 @@ export default {
       data: {
         Erik: {
           color: this.randomColor("Erik"),
-          expenses: [{ label: "Rent", amount: 0 }],
+          expenses: [{ label: "Item 1", amount: 0 }],
           total: 0
         },
         Lindsay: {
           color: this.randomColor("Lindsay"),
-          expenses: [{ label: "Electric", amount: 0 }],
+          expenses: [{ label: "Item 2", amount: 0 }],
           total: 0
         }
       },

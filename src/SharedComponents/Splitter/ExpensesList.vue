@@ -17,6 +17,7 @@
       />
       <input
         v-model="expense.amount"
+        type="number"
         :ref="`amount`"
         placeholder="amount"
         @focus="$event.target.select()"
@@ -57,9 +58,9 @@ export default {
     }
   },
   watch: {
-    expenses: {
-      handler(oldExpenses, newExpenses) {
-        if (oldExpenses.length !== newExpenses.length)
+    numExpenses: {
+      handler(newNum, oldNum) {
+        if (newNum > oldNum || !this.expenses[newNum - 1]?.amount)
           this.$nextTick(function() {
             const amountRef = this.$refs.amount[this.$refs.amount.length - 1];
             amountRef.focus();
@@ -71,6 +72,11 @@ export default {
   methods: {
     removeLine(index) {
       this.expenses.splice(index, 1);
+    }
+  },
+  computed: {
+    numExpenses() {
+      return this.expenses.length;
     }
   }
 };
