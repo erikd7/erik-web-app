@@ -36,9 +36,42 @@ const formatDollar = amount => {
   }).format(amountNum);
 };
 
+const splitter = perPersonBalance => {
+  //Split to payers and payees
+  let payers = [],
+    payees = [];
+  Object.entries(perPersonBalance).forEach(([person, balance]) => {
+    if (balance < 0) payers.push([person, balance]);
+    else payees.push([person, balance]);
+  });
+
+  //Filter
+  payers.sort((a, b) => a[1] - b[1]);
+  payees.sort((a, b) => b[1] - a[1]);
+
+  //Get result
+  let result = {};
+  payers.forEach(function([fromPerson, fromBalance], payersIndex) {
+    payees.forEach(function([toPerson, toBalance], payeesIndex) {
+      const paymentAmount = Math.min(Math.abs(fromBalance), toBalance);
+      if (paymentAmount) {
+        if (!result[fromPerson]) result[fromPerson] = [];
+        fromBalance += paymentAmount;
+        toBalance -= paymentAmount;
+        result[fromPerson].push({ amount: paymentAmount, to: toPerson });
+        payers[payersIndex] = [fromPerson, fromBalance];
+        payees[payeesIndex] = [toPerson, toBalance];
+      }
+    }, payees);
+  }, payers);
+
+  return result;
+};
+
 const helpers = {
   sortByKey,
-  formatDollar
+  formatDollar,
+  splitter
 };
 
 export default helpers;

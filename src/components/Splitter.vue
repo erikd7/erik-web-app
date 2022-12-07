@@ -89,8 +89,8 @@
               <div class="border-b">
                 Expense
               </div>
-              <div class="border-b">
-                Balance
+              <div class="border-b basis-50">
+                Payouts
               </div>
             </div>
           </div>
@@ -99,12 +99,19 @@
               {{ person }}
             </div>
             <div>
-              {{ formatDollar(personTotals[person]) }}
+              {{ formatDollar(personTotals[person]) }} ({{
+                formatDollar(perPersonBalance[person])
+              }})
             </div>
-            <div>
-              {{ formatDollar(perPersonBalance[person]) }}
+            <div class="flex flex-col flex-nowrap basis-50">
+              <div v-for="payout in payouts[person]">
+                <a>{{ formatDollar(payout.amount) }}</a>
+                <a class="mx-0.5"><i class="fas fa-arrow-right"></i></a>
+                <a>{{ payout.to }}</a>
+              </div>
             </div>
           </div>
+          {{ result }}
         </template>
       </CardTile>
     </div>
@@ -223,11 +230,8 @@ export default {
         {}
       );
     },
-    result() {
-      return {
-        Erik: { amount: 0, to: undefined },
-        Lindsay: { amount: 0, to: undefined }
-      };
+    payouts() {
+      return helpers.splitter(this.perPersonBalance);
     }
   }
 };
@@ -242,14 +246,18 @@ export default {
 .table-row > div {
   padding: 5px;
   flex-grow: 1;
-  flex-basis: 50px;
+  flex-basis: 25%;
+  align-self: center;
 }
 .result-card > div {
   flex-grow: 1;
 }
+.basis-50 {
+  flex-basis: 50% !important;
+}
 @media only screen and (min-width: 650px) {
   .result-card > div {
-    width: 400px;
+    width: 500px;
     flex-grow: 0;
   }
 }
