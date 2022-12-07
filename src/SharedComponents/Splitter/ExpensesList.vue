@@ -1,0 +1,74 @@
+<template>
+  <div>
+    <div
+      v-for="(expense, index) in expenses"
+      :key="index"
+      class="flex flex-nowrap"
+      style="width: 300px;"
+    >
+      <input
+        v-model="expense.label"
+        :ref="`label-${person}-${index}`"
+        placeholder="label"
+        class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700
+          bg-white bg-clip-padding border border-solid border-gray-300 rounded m-1
+          transition ease-in-out m-0 ml-0
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+      />
+      <input
+        v-model="expense.amount"
+        :ref="`amount-${person}-${index}`"
+        placeholder="amount"
+        class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700
+          bg-white bg-clip-padding border border-solid border-gray-300 rounded m-1
+          transition ease-in-out m-0 ml-0
+          focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+      />
+      <div class="flex-grow-0 flex-shrink-0" style="flex-basis: 30px;">
+        <div
+          v-if="index !== 0"
+          class="cursor-pointer hover-grow text-xl h-full flex flex-row justify-center items-center"
+          @click="() => removeLine(index)"
+          title="Remove line"
+        >
+          <div style="color: #60789e;">
+            <i class="fas fa-times-circle"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {};
+  },
+  props: {
+    person: {
+      type: String,
+      required: true
+    },
+    expenses: {
+      type: Array,
+      default: () => []
+    }
+  },
+  methods: {
+    removeLine(index) {
+      this.expenses.splice(index, 1);
+    }
+  }
+};
+</script>
+
+<style scoped>
+.card-title {
+  font-weight: bold;
+  border-bottom: 1px solid #425677;
+}
+.card-title > div {
+  padding: 0px 5px;
+}
+</style>

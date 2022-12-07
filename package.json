@@ -10,6 +10,11 @@
     "test": "jest --watch"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.2.1",
+    "@fortawesome/free-brands-svg-icons": "^6.2.1",
+    "@fortawesome/free-regular-svg-icons": "^6.2.1",
+    "@fortawesome/free-solid-svg-icons": "^6.2.1",
+    "@fortawesome/vue-fontawesome": "^2.0.9",
     "autoprefixer": "^9.8.6",
     "axios": "^0.22.0",
     "cardsJS": "^1.1.1",
@@ -24,6 +29,7 @@
     "postcss": "^7.0.36",
     "register-service-worker": "^1.7.2",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.9",
+    "uniqolor": "^1.1.0",
     "vercel": "^23.1.2",
     "vue": "^2.6.11",
     "vue-clickaway": "^2.2.2",
