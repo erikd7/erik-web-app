@@ -1,15 +1,3 @@
-/**
- * @description      :
- * @author           : ebdie
- * @group            :
- * @created          : 09/09/2021 - 21:08:28
- *
- * MODIFICATION LOG
- * - Version         : 1.0.0
- * - Date            : 09/09/2021
- * - Author          : ebdie
- * - Modification    :
- **/
 const sortByKey = (array, sortKey, dir = 1) => {
   const ret = array.sort((a, b) => {
     if (a[sortKey] > b[sortKey]) {
@@ -33,8 +21,24 @@ const sortByKey = (array, sortKey, dir = 1) => {
   return Object.values(hash).flat();*/
 };
 
+const formatDollar = amount => {
+  const amountNum = Number(amount) || 0;
+  let options = { minimumFractionDigits: 2 };
+
+  if (amountNum % 1 === 0) {
+    options = { minimumFractionDigits: 0, maximumFractionDigits: 0 };
+  }
+
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    ...options
+  }).format(amountNum);
+};
+
 const helpers = {
   sortByKey,
+  formatDollar
 };
 
 export default helpers;

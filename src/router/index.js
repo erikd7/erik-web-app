@@ -16,6 +16,7 @@ import Home from "../components/Home.vue";
 import Chess from "../components/Chess.vue";
 import Resume from "../components/Resume.vue";
 import Cribbage from "../components/Cribbage.vue";
+import Splitter from "../components/Splitter.vue";
 import About from "../components/About.vue";
 
 Vue.use(VueRouter);
@@ -24,40 +25,45 @@ export const routes = [
   {
     name: "Home",
     path: "/",
-    component: Home,
+    component: Home
   },
   {
     name: "Resume",
     path: "/resume",
-    component: Resume,
+    component: Resume
   },
   {
     name: "Chess",
     path: "/chess",
-    component: Chess,
+    component: Chess
   },
   {
     name: "Cribbage",
     path: "/cribbage",
-    component: Cribbage,
+    component: Cribbage
+  },
+  {
+    name: "Splitter",
+    path: "/splitter",
+    component: Splitter
   },
   {
     name: "About",
     path: "/about",
-    component: About,
-  },
+    component: About
+  }
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes,
+  routes
 });
 
-router.afterEach((to) => {
-    Vue.nextTick(() => {
-        document.title = `${document.title.split(' | ')[0]} | ${to.name}`;
-    });
+router.afterEach(to => {
+  Vue.nextTick(() => {
+    document.title = `${document.title.split(" | ")[0]} | ${to.name}`;
+  });
 });
 
 export default router;

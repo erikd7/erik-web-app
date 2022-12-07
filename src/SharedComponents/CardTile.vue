@@ -1,7 +1,7 @@
 <template>
   <div
     :class="`card-container ${className} ${hoverGrow ? 'hover-grow' : ''}`"
-    style="--scale: 1.01"
+    :style="{ '--bg-color': color, '--scale': 1.01 }"
   >
     <div v-if="header" :class="`card-header ${headerClass}`">
       {{ header }}
@@ -15,6 +15,9 @@
     <div>
       <slot name="body"></slot>
     </div>
+    <div class="mt-auto">
+      <slot name="footer"></slot>
+    </div>
   </div>
 </template>
 
@@ -26,25 +29,29 @@ export default {
   props: {
     className: {
       type: String,
-      default: '',
+      default: ""
     },
     header: {
       type: String,
-      default: '',
+      default: ""
     },
     headerClass: {
       type: String,
-      default: '',
+      default: ""
     },
     subHeader: {
       type: String,
-      default: '',
+      default: ""
     },
     hoverGrow: {
       type: Boolean,
-      default: true,
+      default: true
     },
-  },
+    color: {
+      type: String,
+      default: "#c3cfe9"
+    }
+  }
 };
 </script>
 
@@ -54,7 +61,7 @@ export default {
   padding: 5px;
   margin: 5px;
   border-radius: 10px;
-  background-color: #c3cfe9;
+  background-color: var(--bg-color);
   text-align: center;
   transition: all 0.15s ease-in-out;
 }
