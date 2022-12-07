@@ -8,8 +8,8 @@
     >
       <input
         v-model="expense.label"
-        :ref="`label-${person}-${index}`"
         placeholder="label"
+        @focus="$event.target.select()"
         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700
           bg-white bg-clip-padding border border-solid border-gray-300 rounded m-1
           transition ease-in-out m-0 ml-0
@@ -17,8 +17,10 @@
       />
       <input
         v-model="expense.amount"
-        :ref="`amount-${person}-${index}`"
+        type="number"
+        :ref="`amount`"
         placeholder="amount"
+        @focus="$event.target.select()"
         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700
           bg-white bg-clip-padding border border-solid border-gray-300 rounded m-1
           transition ease-in-out m-0 ml-0
@@ -55,9 +57,26 @@ export default {
       default: () => []
     }
   },
+  watch: {
+    numExpenses: {
+      handler(newNum, oldNum) {
+        if (newNum > oldNum || !this.expenses[newNum - 1]?.amount)
+          this.$nextTick(function() {
+            const amountRef = this.$refs.amount[this.$refs.amount.length - 1];
+            amountRef.focus();
+          });
+      },
+      deep: true
+    }
+  },
   methods: {
     removeLine(index) {
       this.expenses.splice(index, 1);
+    }
+  },
+  computed: {
+    numExpenses() {
+      return this.expenses.length;
     }
   }
 };
