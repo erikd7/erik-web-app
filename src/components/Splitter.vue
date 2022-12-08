@@ -16,7 +16,7 @@
             >
               <input
                 :ref="`name-edit-${person}`"
-                :value="editingName"
+                :value="person"
                 placeholder="name"
                 @blur="changeName"
                 @keypress.enter="changeName"
@@ -28,7 +28,7 @@
               />
               <button
                 class="button m-1"
-                @click="() => removePerson(person)"
+                @mousedown="() => removePerson(person)"
                 title="Remove person"
               >
                 <i class="fas fa-trash"></i>
@@ -155,7 +155,7 @@ export default {
   watch: {
     data: {
       handler() {
-        const res = Object.entries(this.data).reduce(
+        this.personTotals = Object.entries(this.data).reduce(
           (totals, [person, personInfo]) => {
             totals[person] = personInfo.expenses.reduce(
               (personalTotal, expense) =>
@@ -166,7 +166,6 @@ export default {
           },
           {}
         );
-        this.personTotals = res;
       },
       deep: true
     }
@@ -205,16 +204,19 @@ export default {
         });
       }
     },
-    changeName({ target: eventTarget }) {
-      const newName = eventTarget.value;
-      if (newName && newName !== this.editingName) {
+    changeName(event) {
+      const localEditingName = this.editingName;
+      if (!localEditingName) return;
+      this.toggleNameEdit();
+
+      const newName = event.target.value;
+      if (newName && newName !== localEditingName) {
         this.$set(this.data, newName, {
-          ...this.data[this.editingName],
+          ...this.data[localEditingName],
           color: this.randomColor(newName)
         });
-        this.$delete(this.data, this.editingName);
+        this.$delete(this.data, localEditingName);
       }
-      this.toggleNameEdit();
     }
   },
   computed: {
