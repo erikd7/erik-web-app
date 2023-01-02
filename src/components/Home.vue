@@ -1,7 +1,10 @@
 <template>
   <div class="p-10">
     <div class="flex flex-row justify-between mobile-one-col">
-      <div class="flex flex-column justify-center items-center" style="flex-basis: 40%;">
+      <div
+        class="flex flex-column justify-center items-center"
+        style="flex-basis: 40%;"
+      >
         <div
           class="flex flex-col justify-center flex-nowrap text-6xl font-normal leading-normal mt-0 mb-1 p-2"
           style="color: #60789e;"
@@ -17,7 +20,7 @@
             >
               <i class="hover-grow cursor-pointer fab fa-linkedin" />
             </a>
-            <a href="https://github.com/normalone7" target="_blank">
+            <a href="https://github.com/erikd7" target="_blank">
               <i class="hover-grow cursor-pointer fab fa-github" />
             </a>
             <a href="https://hub.docker.com/u/normalone7" target="_blank">
@@ -59,7 +62,9 @@
         header="Product Designer"
         headerClass="text-3xl"
       >
-        <template v-slot:body>Creating solutions for complex business needs</template>
+        <template v-slot:body
+          >Creating solutions for complex business needs</template
+        >
       </CardTile>
       <CardTile
         className="slide-fade-right"
@@ -75,7 +80,9 @@
         header="Project Manager"
         headerClass="text-3xl"
       >
-        <template v-slot:body>Over 2 years project management experience</template>
+        <template v-slot:body
+          >Over 2 years project management experience</template
+        >
       </CardTile>
     </div>
   </div>
@@ -85,7 +92,7 @@
 import CardTile from "../SharedComponents/CardTile.vue";
 export default {
   components: { CardTile },
-  props: {},
+  props: {}
 };
 </script>
 
