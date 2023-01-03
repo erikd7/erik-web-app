@@ -23,8 +23,8 @@
             <a href="https://github.com/erikd7" target="_blank">
               <i class="hover-grow cursor-pointer fab fa-github" />
             </a>
-            <a href="https://hub.docker.com/u/normalone7" target="_blank">
-              <i class="hover-grow cursor-pointer fab fa-docker" />
+            <a href="https://angel.co/u/erik-dietrich-1" target="_blank">
+              <i class="hover-grow cursor-pointer fab fa-angellist" />
             </a>
           </div>
         </div>
