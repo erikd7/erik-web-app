@@ -124,8 +124,19 @@
                   </ul>
                 </div>
                 <div v-else>{{ experience.description }}</div>
-              </div></template
-            >
+                <div
+                  v-if="experience.coreStack?.length"
+                  class="flex flex-col align-center justify-center"
+                >
+                  <div class="text-center font-bold">Core Stack</div>
+                  <TagArray
+                    :array="
+                      experience.coreStack.map(s => ({ label: s, tooltip: s }))
+                    "
+                    containerClass="justify-center"
+                  />
+                </div></div
+            ></template>
           </CardTile>
         </span>
       </div>
