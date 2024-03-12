@@ -68,55 +68,56 @@
       <CribbageInput :options="selectOptions" :selectFunction="selectCard" />
     </div>
     <div v-if="this.cardsResult.totalPoints">
-      Total Points is {{ this.cardsResult.totalPoints }}
-    </div>
-    <div
-      v-if="this.cardsResult.totalPoints"
-      class="flex flex-row justify-items-center justify-evenly flex-wrap mobile-one-col"
-    >
-      <Card
-        cardTitle="Sums"
-        cardLabel="Sum"
-        :cards="cardsResult.sums.cards"
-        :points="cardsResult.sums.points"
-      />
-      <Card
-        cardTitle="Pairs"
-        cardLabel="Pair"
-        :cards="cardsResult.pairs.cards"
-        :points="cardsResult.pairs.points"
-      />
-      <Card
-        cardTitle="Runs"
-        cardLabel="Run"
-        :cards="cardsResult.runs.cards"
-        :points="cardsResult.runs.points"
-      />
+      <div class="pt-3 text-4xl text-center">
+        Total Points: {{ this.cardsResult.totalPoints }}
+      </div>
+      <div
+        class="flex flex-row justify-items-center justify-evenly flex-wrap mobile-one-col"
+      >
+        <Card
+          cardTitle="Sums"
+          cardLabel="Sum"
+          :cards="cardsResult.sums.cards"
+          :points="cardsResult.sums.points"
+        />
+        <Card
+          cardTitle="Pairs"
+          cardLabel="Pair"
+          :cards="cardsResult.pairs.cards"
+          :points="cardsResult.pairs.points"
+        />
+        <Card
+          cardTitle="Runs"
+          cardLabel="Run"
+          :cards="cardsResult.runs.cards"
+          :points="cardsResult.runs.points"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import Card from '../SharedComponents/Card.vue';
-import CribbageInput from '../SharedComponents/Cribbage/CribbageInput.vue';
-import { CardResult, helpers } from '../util/pointsCounterHelpers';
+import Card from "../SharedComponents/Card.vue";
+import CribbageInput from "../SharedComponents/Cribbage/CribbageInput.vue";
+import { CardResult, helpers } from "../util/pointsCounterHelpers";
 
 export default {
   components: { Card, CribbageInput },
   props: {
     resume: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   data() {
     return {
       cardsResult: {},
-      handEntry: '',
+      handEntry: "",
       selectedSuit: null,
       isHandEntryFocused: false,
       isUsingSelector: true,
-      isHandValid: { ok: false, message: 'Enter a hand to count points.' },
+      isHandValid: { ok: false, message: "Enter a hand to count points." }
     };
   },
   methods: {
@@ -142,7 +143,7 @@ export default {
       if (this.handEntry?.length === 5) {
         this.calculatePoints();
       }
-    },
+    }
   },
   computed: {
     validityMessage() {
@@ -158,9 +159,9 @@ export default {
 
       return helpers.orderedFaces.map(face => ({
         value: face.concat(this.selectedSuit),
-        disabled: this.handEntry.includes(face.concat(this.selectedSuit)),
+        disabled: this.handEntry.includes(face.concat(this.selectedSuit))
       }));
-    },
-  },
+    }
+  }
 };
 </script>

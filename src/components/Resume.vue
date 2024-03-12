@@ -45,9 +45,15 @@
         </CardTile>
         <CardTile header="Links"
           ><template v-slot:body>
-            <div v-for="link in resumeInfo.links" :key="link.title" class="flex flex-col">
+            <div
+              v-for="link in resumeInfo.links"
+              :key="link.title"
+              class="flex flex-col"
+            >
               <div>
-                <a class="link" :href="link.url" target="_blank">{{ link.title }}</a>
+                <a class="link" :href="link.url" target="_blank">{{
+                  link.title
+                }}</a>
               </div>
             </div></template
           >
@@ -83,7 +89,9 @@
                 </a>
               </div>
               <div
-                v-for="(focus, index) in education.majors.concat(education.minors)"
+                v-for="(focus, index) in education.majors.concat(
+                  education.minors
+                )"
                 :key="`focus-${index}`"
               >
                 <div>
@@ -100,13 +108,22 @@
         >
           <CardTile
             :header="`${experience.title}, ${experience.organization}`"
-            :subHeader="experience.startAndEnd ||
-              `${experience.location} | ${experience.start} — ${experience.end ||
-                'present'}`
+            :subHeader="
+              experience.startAndEnd ||
+                `${experience.location} | ${
+                  experience.start
+                } — ${experience.end || 'present'}`
             "
             ><template v-slot:body>
               <div class="text-left whitespace-pre-line">
-                {{ experience.description }}
+                <div v-if="Array.isArray(experience.description)">
+                  <ul class="list-disc list-inside">
+                    <li v-for="experienceDescription of experience.description">
+                      {{ experienceDescription }}
+                    </li>
+                  </ul>
+                </div>
+                <div v-else>{{ experience.description }}</div>
               </div></template
             >
           </CardTile>
@@ -117,7 +134,10 @@
         <!--Skills-->
         <CardTile header="Core Technical Skills">
           <template v-slot:body>
-            <TagArray :array="resumeInfo.skillsCore" labelKey="name" tooltipKey="details"
+            <TagArray
+              :array="resumeInfo.skillsCore"
+              labelKey="name"
+              tooltipKey="details"
           /></template>
         </CardTile>
         <CardTile header="Additional Technical Skills"
@@ -153,14 +173,14 @@ export default {
   props: {
     resume: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   data() {
     return {
       resumeInfo: {},
       loadingMessage: "",
-      errorMessage: "",
+      errorMessage: ""
     };
   },
   created() {
@@ -173,18 +193,18 @@ export default {
     } else {
       api.resumeInfo
         .get()
-        .then((response) => {
+        .then(response => {
           if (response.ok) {
             this.resumeInfo = response.data;
             localStorageHelpers.set("resume", response.data, {
               expirationValue: 5,
-              expirationUnits: "m",
+              expirationUnits: "m"
             });
           } else {
             this.errorMessage = response.message;
           }
         })
-        .catch((error) => {
+        .catch(error => {
           this.errorMessage = `Failed to retrieve resume info with: ${JSON.stringify(
             error.message
           )}`;
@@ -193,7 +213,7 @@ export default {
           this.loadingMessage = null;
         });
     }
-  },
+  }
 };
 </script>
 
