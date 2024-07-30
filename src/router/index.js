@@ -51,6 +51,11 @@ export const routes = [
     name: "About",
     path: "/about",
     component: About
+  },
+  {
+    name: "Snapcast",
+    path: "http://sound.edietrich.com/",
+    isExternal: true
   }
 ];
 
