@@ -56,6 +56,11 @@ export const routes = [
     name: "Snapcast",
     path: "http://sound.edietrich.com/",
     isExternal: true
+  },
+  {
+    name: "Plexamp",
+    path: "http://plexamp.edietrich.com/",
+    isExternal: true
   }
 ];
 
