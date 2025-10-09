@@ -141,13 +141,13 @@ export default {
           expenses: [{ label: "Item 1", amount: 0 }],
           total: 0
         },
-        Lindsay: {
-          color: this.randomColor("Lindsay"),
+        Cara: {
+          color: this.randomColor("Cara"),
           expenses: [{ label: "Item 2", amount: 0 }],
           total: 0
         }
       },
-      personTotals: { Erik: 0, Lindsay: 0 },
+      personTotals: { Erik: 0, Cara: 0 },
       defaultName: "name",
       editingName: undefined
     };
