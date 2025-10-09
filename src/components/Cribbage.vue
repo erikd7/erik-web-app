@@ -69,7 +69,7 @@
     </div>
     <div v-if="this.cardsResult.totalPoints">
       <div class="pt-3 text-4xl text-center">
-        Total Points: {{ this.cardsResult.totalPoints }}
+        <b>{{ this.cardsResult.totalPoints }}</b> points
       </div>
       <div
         class="flex flex-row justify-items-center justify-evenly flex-wrap mobile-one-col"

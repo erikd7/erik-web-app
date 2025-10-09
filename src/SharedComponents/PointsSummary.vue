@@ -1,13 +1,18 @@
 <template>
   <div>
-    <div class="fan" data-fan="spacing: 0.1; width: 80; radius: 80; cards: AS,KS"></div>
+    <div
+      class="fan"
+      data-fan="spacing: 0.1; width: 80; radius: 80; cards: AS,KS"
+    ></div>
     <div v-for="(set, index) in cards" :key="index">
       <div class="hand hhand-compact active-hand flex justify-center">
         <img
           v-for="cardFace in set"
           :key="cardFace"
-          class="card transition-smooth"
-          style="--duration: .2s"
+          class="card transition-smooth p-1"
+          style="--duration: .2s;
+          width: 80px;
+          height: auto;"
           :src="require(`@/data/cards/${cardFace}.svg`)"
         />
       </div>
@@ -23,12 +28,12 @@ export default {
   props: {
     cards: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     label: {
       type: String,
-      default: 'Set',
-    },
-  },
+      default: "Set"
+    }
+  }
 };
 </script>
