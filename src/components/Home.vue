@@ -40,10 +40,10 @@
         style="color: #60789e"
       >
         <div class="slide-fade-right text-left text-4xl">
-          Full stack engineering&nbsp;
+          Full stack engineer&nbsp;
         </div>
         <div class="slide-fade-left text-center text-2xl">
-          focused on process improvement and end-to-end user experience
+          designing, building, and continuously improving end-to-end systems
         </div>
       </div>
     </div>
@@ -51,37 +51,45 @@
       <CardTile
         className="slide-fade-right"
         style="--duration: .5s"
-        header="Full Stack Engineer"
+        header="End-to-End Ownership"
         headerClass="text-3xl"
       >
-        <template v-slot:body>Front and back end experience</template>
+        <template v-slot:body
+          >Designs, builds, and ships production systems from UX through backend
+          and deployment</template
+        >
       </CardTile>
       <CardTile
         className="slide-fade-right"
         style="--duration: 1s"
-        header="Product Designer"
+        header="Product-Minded Engineering"
         headerClass="text-3xl"
       >
         <template v-slot:body
-          >Creating solutions for complex business needs</template
+          >Turns ambiguous business problems into reliable, user-facing
+          solutions</template
         >
       </CardTile>
       <CardTile
         className="slide-fade-right"
         style="--duration: 1.5s"
-        header="Scrum Master"
+        header="Systems at Scale"
         headerClass="text-3xl"
       >
-        <template v-slot:body>Embedded Scrum Master on an Agile team</template>
+        <template v-slot:body
+          >Builds and operates high-impact systems with strong performance,
+          consistency, and reliability</template
+        >
       </CardTile>
       <CardTile
         className="slide-fade-right"
         style="--duration: 2s"
-        header="Project Manager"
+        header="Execution & Leadership"
         headerClass="text-3xl"
       >
         <template v-slot:body
-          >Over 2 years project management experience</template
+          >Drives technical design, mentors engineers, and improves team
+          velocity through pragmatic process</template
         >
       </CardTile>
     </div>
@@ -92,7 +100,7 @@
 import CardTile from "../SharedComponents/CardTile.vue";
 export default {
   components: { CardTile },
-  props: {}
+  props: {},
 };
 </script>
 
