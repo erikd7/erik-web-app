@@ -25,52 +25,42 @@ export const routes = [
   {
     name: "Home",
     path: "/",
-    component: Home
+    component: Home,
   },
   {
     name: "Resume",
     path: "/resume",
-    component: Resume
+    component: Resume,
   },
   {
     name: "Chess",
     path: "/chess",
-    component: Chess
+    component: Chess,
   },
   {
     name: "Cribbage",
     path: "/cribbage",
-    component: Cribbage
+    component: Cribbage,
   },
   {
     name: "Splitter",
     path: "/splitter",
-    component: Splitter
+    component: Splitter,
   },
   {
     name: "About",
     path: "/about",
-    component: About
+    component: About,
   },
-  {
-    name: "Snapcast",
-    path: "http://sound.edietrich.com/",
-    isExternal: true
-  },
-  {
-    name: "Plexamp",
-    path: "http://plexamp.edietrich.com/",
-    isExternal: true
-  }
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes,
 });
 
-router.afterEach(to => {
+router.afterEach((to) => {
   Vue.nextTick(() => {
     document.title = `${document.title.split(" | ")[0]} | ${to.name}`;
   });
